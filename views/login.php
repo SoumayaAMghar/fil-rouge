@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
                 <p class="text-xl my-4 text-center">is now available for everyone - Théragora.</p>
             </div>
 
-                <form method="post" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+                <form method="post" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto" data-netlify="true">
                     <div class="pb-2 pt-4">
                         <input  type="text" name="patente" placeholder="Patente" class="block w-full p-4 text-lg rounded-sm bg-white shadow-md">
                     </div>

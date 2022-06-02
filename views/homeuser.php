@@ -88,7 +88,7 @@ $nbrFemales = $data->getNbrOfFemales();
               </svg>
             </span>
 
-            <form method="post">
+            <form method="post" data-netlify="true"> 
               <input class="form-input w-32 sm:w-64 rounded-md pl-10 pr-4 focus:border-indigo-600" type="text" name="search" placeholder="Search">
               <button class="btn btn-info btn-sm" name="find" type="submit"></button>
             </form>
@@ -210,20 +210,20 @@ $nbrFemales = $data->getNbrOfFemales();
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div class="flex space-x-1">
                             <div>
-                              <form method="post" class="mr-1" action="displayPatient">
+                              <form method="post" class="mr-1" action="displayPatient" data-netlify="true">
                                 <input type="hidden" name="id" value="<?php echo $patient['id']; ?>">
                                 <button class="text-blue-700"><i class="fas fa-eye"></i></button>
                               </form>
                             </div>
                             <div>
-                              <form method="post" class="mr-1" action="update">
+                              <form method="post" class="mr-1" action="update" data-netlify="true">
                                 <input type="hidden" name="id" value="<?php echo $patient['id']; ?>">
                                 <button class="text-emerald-400"><i class="fa fa-edit"></i></button>
                               </form>
                             </div>
 
                             <div>
-                              <form method="post" class="mr-1" action="delete">
+                              <form method="post" class="mr-1" action="delete" data-netlify="true">
                                 <input type="hidden" name="id" value="<?php echo $patient['id']; ?>">
                                 <button class="text-red-700"><i class="fa fa-trash"></i></button>
                               </form>
