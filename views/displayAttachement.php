@@ -1,14 +1,53 @@
 <?php
-if (isset($_POST['id']) && !isset($_POST['submit'])) {
-    $existPatient = new PatientsController();
-    $patient = $existPatient->getOnePatient();
-}
 
-if (isset($_POST['submit'])) {
-    $existPatient = new PatientsController();
-    $existPatient->updatePatient();
+$dat = new AttachementsController();
+$attachements = $dat->getAllattachements();
+
+if (isset($_POST['id_patient'])) {
+
+    $data = new PatientsController();
+    $patient = $data->getOnePatient();
+    $_SESSION['id_patient'] = $_POST['id_patient'];
 }
 ?>
+
+<style>
+    .bg-gradient-cover {
+        background-color: transparent;
+        background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.92));
+        background-position-y: -1px;
+    }
+
+    .max-h-98 {
+        max-height: 24.3rem;
+    }
+
+    .box-one>article:nth-child(1) {
+        padding-top: 0;
+        padding-bottom: 0.125rem;
+        padding-right: 0.125rem;
+    }
+
+    .box-one>article:nth-child(2) {
+        padding-top: 0;
+        padding-bottom: 0.125rem;
+        padding-left: 0.125rem;
+    }
+
+    .box-one>article:nth-child(3) {
+        padding-top: 0.125rem;
+        padding-bottom: 0.125rem;
+        padding-right: 0.125rem;
+    }
+
+    .box-one>article:nth-child(4) {
+        padding-top: 0.125rem;
+        padding-bottom: 0.125rem;
+        padding-left: 0.125rem;
+    }
+</style>
+
+
 
 <div>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -29,21 +68,23 @@ if (isset($_POST['submit'])) {
             </div>
 
             <nav class="mt-10">
-                <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
+
+                <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
                     <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
                     </svg>
+
                     <span class="mx-3">Patients</span>
                 </a>
+                <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>displayPatient">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z">
+                        </path>
+                    </svg>
 
-                <!-- <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="/ui-elements">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z">
-            </path>
-          </svg>
+                    <span class="mx-3">Patient's Informations</span>
+                </a>
 
-          <span class="mx-3">UI Elements</span>
-        </a> -->
 
                 <!-- <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="/tables">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -80,44 +121,37 @@ if (isset($_POST['submit'])) {
                             <!-- <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200"> -->
 
                             <div class="flex justify-center items-center w-full ">
-                                <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
-                                    <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">Edit a Patient</h1>
-                                    <form method="post">
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="firstname">First Name</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="firstname" id="firstname" value="<?php echo $patient->firstname; ?>">
-                                            <input type="hidden" name="id" value="<?php echo $patient->id; ?>">
-                                        </div>
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="lastname">Last Name</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname" value="<?php echo $patient->lastname; ?>">
-                                        </div>
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="cin">CIN</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin" value="<?php echo $patient->cin; ?>">
-                                        </div>
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="phone">Phone</label>
-                                            <input class="border py-2 text-grey-800" type="text" name="phone" id="phone" value="<?php echo $patient->phone; ?>">
-                                        </div>
-                                        <div class="pt-4 flex items-center justify-center">
-                                            <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>homeuser">
-                                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                </svg> Cancel
-                                            </a>
-                                            <button type="submit" name="submit" class="bg-indigo-500 w-40 text-white px-4 py-3 rounded-md focus:outline-none">SAVE</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </div>
-            </main>
-
-
+                                <!-- <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4"> -->
+                                <section class="flex-shrink max-w-full w-full sm:w-1/2">
+    <div class="relative hover-img max-h-48 overflow-hidden rounded-md m-2">
+        <a href="#">
+            <img class="max-w-full w-full mx-auto h-auto" src="https://media.istockphoto.com/photos/medical-record-picture-id1202959518?k=20&m=1202959518&s=612x612&w=0&h=qoRuwJM6jfQkgmVBDpkEJPEwnp74tAUqQTawfYySNKs=" alt="Image description">
+        </a>
+        <div class="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
+            <a href="#">
+                <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">Attachements</h2>
+                <form method="post" action="addattachement">
+                    <button><i class="fas fa-plus  bg-teal-400 rounded p-2 mt-2"></i></button>
+                </form>
+            </a>
+            <div class="pt-1">
+                <!-- <div class="text-gray-100"> -->
+                <?php foreach ($attachements as $attachement) : ?>
+                    <p class="text-gray-100 hidden sm:inline-block"><?php echo $attachement['titre']; ?></p>
+                    <p class="text-gray-100 hidden sm:inline-block"><?php echo $attachement['date']; ?></p>
+                    <p class="text-gray-100 hidden sm:inline-block"><?php echo $attachement['attachement']; ?></p>
+                <?php endforeach; ?>
+                <!-- </div> -->
+            </div>
         </div>
     </div>
+</section>
+                        </div>
+                        
+                    </div>
+                </div>
+        </div>
+        </main>
+    </div>
+</div>
 </div>

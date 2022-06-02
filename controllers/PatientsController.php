@@ -18,7 +18,7 @@ class PatientsController {
             );
             $result = Patient::add($data);
             if($result === 'ok'){
-                Session::set('success','Patient Ajouté');
+                // Session::set('success','Patient Ajouté');
                 Redirect::to('homeuser');
             }else{
                 echo $result;

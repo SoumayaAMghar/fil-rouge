@@ -1,14 +1,11 @@
 <?php
-if (isset($_POST['id']) && !isset($_POST['submit'])) {
-    $existPatient = new PatientsController();
-    $patient = $existPatient->getOnePatient();
+if (isset($_POST['submit'])) {
+    $newPatient = new PatientsController();
+    $newPatient->addPatient();
 }
 
-if (isset($_POST['submit'])) {
-    $existPatient = new PatientsController();
-    $existPatient->updatePatient();
-}
 ?>
+
 
 <div>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -81,25 +78,34 @@ if (isset($_POST['submit'])) {
 
                             <div class="flex justify-center items-center w-full ">
                                 <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
-                                    <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">Edit a Patient</h1>
+                                    <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">ADD Patient</h1>
                                     <form method="post">
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="firstname">First Name</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="firstname" id="firstname" value="<?php echo $patient->firstname; ?>">
-                                            <input type="hidden" name="id" value="<?php echo $patient->id; ?>">
+                                            <input class="border py-2 px-3 text-grey-800" type="text" name="firstname" id="firstname">
+                                            
                                         </div>
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="lastname">Last Name</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname" value="<?php echo $patient->lastname; ?>">
+                                            <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname" >
                                         </div>
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="cin">CIN</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin" value="<?php echo $patient->cin; ?>">
+                                            <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin" >
                                         </div>
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="phone">Phone</label>
-                                            <input class="border py-2 text-grey-800" type="text" name="phone" id="phone" value="<?php echo $patient->phone; ?>">
+                                            <input class="border py-2 text-grey-800" type="text" name="phone" id="phone" >
                                         </div>
+                                        <div class="flex flex-col mb-4">
+                                            <label class="mb-2 font-bold text-lg text-gray-900" for="birthday">Birthday</label>
+                                            <input class="border py-2 px-3 text-grey-800" type="date" name="birthday" id="birthday" >
+                                        </div>
+                                        <div class="flex flex-col mb-4">
+                                            <label class="mb-2 font-bold text-lg text-gray-900" for="blood_group">Blood_group</label>
+                                            <input class="border py-2 text-grey-800" type="text" name="blood_group" id="blood_group" >
+                                        </div>
+                                        
                                         <div class="pt-4 flex items-center justify-center">
                                             <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>homeuser">
                                                 <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
