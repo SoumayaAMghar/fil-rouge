@@ -11,6 +11,40 @@ class Patient{
         return $patient;
     }
 
+    static public function nbrOfPatients()
+    {
+        $stmt  =DB::connect()->prepare('SELECT COUNT(*) as nbrOfPatients FROM patients');
+        $stmt->execute();
+        $patients = $stmt->fetchColumn();
+        return $patients;
+    }
+    static public function nbrOfMales()
+    {
+        $stmt  =DB::connect()->prepare('SELECT COUNT(gender) as nbrOfMales FROM patients WHERE gender = "male";');
+        $stmt->execute();
+        $patients = $stmt->fetchColumn();
+        return $patients;
+    }
+    static public function nbrOfFemales()
+    {
+        $stmt  =DB::connect()->prepare('SELECT COUNT(gender) as nbrOfFemales FROM patients WHERE gender = "female";');
+        $stmt->execute();
+        $patients = $stmt->fetchColumn();
+        return $patients;
+    }
+
+    static public function searchPatients($data){
+        $search = $data['search'];
+        try{
+            $query = 'SELECT * FROM patients WHERE firstname  LIKE ? OR lastname LIKE ?';
+            $stmt = DB::connect()->prepare($query);
+            $stmt->execute(array('%'.$search.'%','%'.$search.'%'));
+            $patients =$stmt->fetchAll();
+            return $patients;
+        }catch(PDOException $ex){
+            echo 'error'.$ex->getMessage();
+        }
+    }
     static public function add($data){
         $stmt = DB::connect()->prepare('INSERT INTO patients (firstname,lastname,birthday,cin,phone,blood_group) VALUES (:firstname,:lastname,:birthday,:cin,:phone,:blood_group)');
         $stmt->bindParam(':firstname',$data['firstname']);
@@ -27,6 +61,7 @@ class Patient{
         }
         $stmt = null;
     }
+
     static public function update($data){
         // echo "<pre>";
         // print_r($data);

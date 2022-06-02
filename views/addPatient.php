@@ -83,29 +83,37 @@ if (isset($_POST['submit'])) {
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="firstname">First Name</label>
                                             <input class="border py-2 px-3 text-grey-800" type="text" name="firstname" id="firstname">
-                                            
+
                                         </div>
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="lastname">Last Name</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname" >
+                                            <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname">
+                                        </div>
+                                        <div class="flex flex-col mb-4">
+                                            <label class="mb-2 font-bold text-lg text-gray-900" for="gender">Gender</label>
+                                            <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="gender" id="gender" > -->
+                                            <select class="border py-2 px-3 text-grey-800" name="gender">
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
                                         </div>
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="cin">CIN</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin" >
+                                            <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin">
                                         </div>
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="phone">Phone</label>
-                                            <input class="border py-2 text-grey-800" type="text" name="phone" id="phone" >
+                                            <input class="border py-2 text-grey-800" type="text" name="phone" id="phone">
                                         </div>
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="birthday">Birthday</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="date" name="birthday" id="birthday" >
+                                            <input class="border py-2 px-3 text-grey-800" type="date" name="birthday" id="birthday">
                                         </div>
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="blood_group">Blood_group</label>
-                                            <input class="border py-2 text-grey-800" type="text" name="blood_group" id="blood_group" >
+                                            <input class="border py-2 text-grey-800" type="text" name="blood_group" id="blood_group">
                                         </div>
-                                        
+
                                         <div class="pt-4 flex items-center justify-center">
                                             <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>homeuser">
                                                 <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
