@@ -15,7 +15,7 @@ $nbrMales = $data->getNbrOfMales();
 
 $data = new PatientsController();
 $nbrFemales = $data->getNbrOfFemales();
- 
+
 ?>
 
 
@@ -23,35 +23,34 @@ $nbrFemales = $data->getNbrOfFemales();
 
 <div>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
   <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
-    <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
-
+    <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden">
+    </div>
     <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
       <div class="flex items-center justify-center mt-8">
         <div class="flex items-center">
-
-
-          <span class="text-white text-2xl mx-2 font-semibold">DM<span class="text-blue-700">I</span></span>
+          <a href="<?= BASE_URL ?>homeuser">
+            <span class="text-white text-2xl mx-2 font-semibold">DM<span class="text-indigo-600">I</span></span>
+          </a>
         </div>
       </div>
-
       <nav class="mt-10">
         <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
-          <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
           </svg>
-          <span class="mx-3">Patients</span>
+          <!-- <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+          </svg> -->
+          <span class="mx-3">Dashboard</span>
         </a>
 
-        <!-- <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="/ui-elements">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z">
-            </path>
-          </svg>
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?= BASE_URL ?>addPatient">
 
-          <span class="mx-3">UI Elements</span>
-        </a> -->
+          <i class=" text-whit fa fa-plus"></i>
+          <span class="mx-3">Add Patient</span>
+        </a>
 
         <!-- <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="/tables">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -98,8 +97,6 @@ $nbrFemales = $data->getNbrOfFemales();
         </div>
 
         <div class="flex items-center">
-
-
           <div x-data="{ dropdownOpen: false }" class="relative">
             <a href="<?php echo BASE_URL; ?>logout" title="Déconnexion" class="mr-2 mb-2 text-black">
               <i class="fa fa-power-off"></i> Logout
@@ -121,10 +118,10 @@ $nbrFemales = $data->getNbrOfFemales();
 
           <div class="mt-4">
             <div class="flex flex-wrap -mx-6">
-              <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
+              <div class="w-full  px-6 sm:w-1/2 xl:w-1/3">
                 <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
                   <div class="p-3 rounded-full bg-orange-600  bg-opacity-75">
-                    <svg class="h-8 w-8 text-white" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="h-9 w-9 text-white" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M18.2 9.08889C18.2 11.5373 16.3196 13.5222 14 13.5222C11.6804 13.5222 9.79999 11.5373 9.79999 9.08889C9.79999 6.64043 11.6804 4.65556 14 4.65556C16.3196 4.65556 18.2 6.64043 18.2 9.08889Z" fill="currentColor"></path>
                       <path d="M25.2 12.0444C25.2 13.6768 23.9464 15 22.4 15C20.8536 15 19.6 13.6768 19.6 12.0444C19.6 10.4121 20.8536 9.08889 22.4 9.08889C23.9464 9.08889 25.2 10.4121 25.2 12.0444Z" fill="currentColor"></path>
                       <path d="M19.6 22.3889C19.6 19.1243 17.0927 16.4778 14 16.4778C10.9072 16.4778 8.39999 19.1243 8.39999 22.3889V26.8222H19.6V22.3889Z" fill="currentColor"></path>
@@ -135,7 +132,7 @@ $nbrFemales = $data->getNbrOfFemales();
                   </div>
 
                   <div class="mx-5">
-                    <h4 class="text-2xl font-semibold text-gray-700"><?=  $nbrPatients ?></h4>
+                    <h4 class="text-2xl font-semibold text-gray-700"><?= $nbrPatients ?></h4>
                     <div class="text-gray-500">Patients</div>
                   </div>
                 </div>
@@ -144,7 +141,7 @@ $nbrFemales = $data->getNbrOfFemales();
               <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
                 <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
                   <div class="p-3 rounded-full  bg-indigo-600 bg-opacity-75">
-                  <i class="text-white w-6 ml-3 text-3xl fa fa-male" ></i>
+                    <i class="text-white w-6 ml-3 text-3xl fa fa-male"></i>
                   </div>
 
                   <div class="mx-5">
@@ -157,7 +154,7 @@ $nbrFemales = $data->getNbrOfFemales();
               <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
                 <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
                   <div class="p-3 rounded-full  bg-pink-600 bg-opacity-75">
-                  <i class="text-white w-6 ml-3 text-3xl fa fa-female" ></i>
+                    <i class="text-white w-6 ml-3 text-3xl fa fa-female"></i>
                   </div>
 
                   <div class="mx-5">
@@ -182,8 +179,10 @@ $nbrFemales = $data->getNbrOfFemales();
                     <tr>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Name</th>
-                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         CIN</th>
+                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      Gender</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Phone</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -200,6 +199,9 @@ $nbrFemales = $data->getNbrOfFemales();
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $patient['cin']; ?>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <?php echo $patient['gender']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $patient['phone']; ?>

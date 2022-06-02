@@ -7,7 +7,7 @@ require_once './views/includes/alerts.php';
 
 $home = new HomeController();
 
-$pages = ['add','homeadmin','homeuser','addPatient','update','delete','login','loginadmin','logoutadmin','register','logout','pending', 'rejected', 'displayPatient','adddisease','addattachement','displayAttachement','displayDisease','displayAllergies'];
+$pages = ['homeadmin','homeuser','addPatient','update','delete','login','loginadmin','logoutadmin','register','logout','pending', 'rejected', 'displayPatient','adddisease','addattachement','addBiometry','addVaccine','addallergy','displayAttachement','displayDisease','displayAllergies','displayVaccine','displayBiometry','deleteallergy','deleteattachement','deletebiometry','deletevaccine','deletedisease'];
 // print_r($_SESSION);
 if(isset($_SESSION['login']) && $_SESSION['login'] == true)
 {

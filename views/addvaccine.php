@@ -1,14 +1,16 @@
 <?php
-if (isset($_POST['id']) && !isset($_POST['submit'])) {
-    $existPatient = new PatientsController();
-    $patient = $existPatient->getOnePatient();
+if(isset($_POST['submit'])){
+    $newVaccine= new VaccinesController();
+    $newVaccine->add();
+}   
+if(isset($_POST['patient_id'])){
+ $data = new PatientsController();
+$patient = $data->getOnePatient();  
+$patient_id = $_POST['patient_id']; 
 }
 
-if (isset($_POST['submit'])) {
-    $existPatient = new PatientsController();
-    $existPatient->updatePatient();
-}
 ?>
+
 
 <div>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -42,7 +44,14 @@ if (isset($_POST['submit'])) {
           <i class=" text-whit fa fa-plus"></i>
           <span class="mx-3">Add Patient</span>
         </a>
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>displayPatient">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z">
+                        </path>
+                    </svg>
 
+                    <span class="mx-3">Patient's Informations</span>
+                </a>
         <!-- <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="/tables">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
@@ -109,29 +118,26 @@ if (isset($_POST['submit'])) {
         <div class="container mx-auto px-6 py-8">
           
           
-        <div class="flex justify-center items-center w-full ">
+          <div class="flex justify-center items-center w-full ">
                                 <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
-                                    <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">Edit a Patient</h1>
+                                    <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">ADD Vaccine</h1>
                                     <form method="post">
                                         <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="firstname">First Name</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="firstname" id="firstname" value="<?php echo $patient->firstname; ?>">
-                                            <input type="hidden" name="id" value="<?php echo $patient->id; ?>">
+                                            <label class="mb-2 font-bold text-lg text-gray-900" for="date">Date</label>
+                                            <input class="border py-2 px-3 text-grey-800" type="date" name="date" id="date">
+
                                         </div>
                                         <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="lastname">Last Name</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname" value="<?php echo $patient->lastname; ?>">
+                                            <label class="mb-2 font-bold text-lg text-gray-900" for="type">Type</label>
+                                            <input class="border py-2 px-3 text-grey-800" type="text" name="type" id="type">
                                         </div>
                                         <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="cin">CIN</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin" value="<?php echo $patient->cin; ?>">
+                                            <label class="mb-2 font-bold text-lg text-gray-900" for="vaccine">Vaccine</label>
+                                            <input class="border py-2 px-3 text-grey-800" type="text" name="vaccine" id="vaccine" >
                                         </div>
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="phone">Phone</label>
-                                            <input class="border py-2 text-grey-800" type="text" name="phone" id="phone" value="<?php echo $patient->phone; ?>">
-                                        </div>
+                                                                                
                                         <div class="pt-4 flex items-center justify-center">
-                                            <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>homeuser">
+                                            <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>displaVaccine">
                                                 <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                                 </svg> Cancel
@@ -141,6 +147,7 @@ if (isset($_POST['submit'])) {
                                     </form>
                                 </div>
                             </div>
+
 
         </div>
       </main>

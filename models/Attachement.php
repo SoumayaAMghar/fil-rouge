@@ -19,6 +19,10 @@ class Attachement
     static public function add($data)
     {
             $file = $_FILES['attachement']['name'];
+            
+            if (move_uploaded_file($_FILES['attachement']['tmp_name'], 'views/includes/images/'.$file))
+            {
+
             $stmt = DB::connect()->prepare('INSERT INTO attachement (date,type,titre,id_patient,attachement) VALUES (:date,:type,:titre,:id_patient,:attachement);');
             $stmt->bindParam(':date', $data['date']);
             $stmt->bindParam(':type', $data['type']);
@@ -32,5 +36,20 @@ class Attachement
                 return 'error';
             }
             $stmt = null;
+            }
+        }
+
+        static public function delete($data){
+            $id = $data['id'];
+            try{
+                $query = 'DELETE FROM attachement WHERE id=:id';
+                $stmt = DB::connect()->prepare($query);
+                $stmt->execute(array(":id" => $id));
+                if($stmt->execute()){
+                    return 'ok';
+                }
+            }catch(PDOException $ex){
+                echo 'error'.$ex->getMessage();
+            }
         }
 }

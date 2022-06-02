@@ -1,44 +1,46 @@
 <?php
 
-class DiseasesController {
+class BiometriesController{
     
-    public function getAlldiseases(){
+    public function getAllbiometries(){
         // echo "<pre>";
         // print_r($_POST);
         // die;
-        $id =$_SESSION['id_patient'];
+        $id = $_SESSION['id_patient'];
+        
         // print_r($_SESSION['id_patient']);
-        $diseases = Disease::getAlldis($id);
-        return $diseases;
+        $biometries = Biometry::getAllbiom($id);
+        return $biometries;
     }
-    public function addDisease(){
+    public function add(){
         if(isset($_POST['submit'])){
             $data = array(
-                'date' => $_POST['date'],
-                'disease' => $_POST['disease'],
-                'status' => $_POST['status'],
+                'age' => $_POST['age'],
+                'weight' => $_POST['weight'],
+                'height' => $_POST['height'],
+                'blood_group' => $_POST['blood_group'],
                 'id_patient' =>$_SESSION['id_patient'],
             );
-            $result = Disease::add($data);
+            $result = Biometry::add($data);
             if($result === 'ok'){
-                // Session::set('success','Disease added');
-                Redirect::to('displayDisease');
+                // Session::set('success','Biometry added');
+                Redirect::to('displayBiometry');
             }else{
                 echo $result;
             }
         }
     }
-    public function deleteDisease()
+    public function deleteBiometry()
     {
         // echo '<pre>';
         // print_r($_POST);
         // die;
         if (isset($_POST['id'])) {
             $data['id'] = $_POST['id'];
-        $result = Disease::delete($data);
+        $result = Biometry::delete($data);
             if ($result === 'ok') {
                 // Session::set('success', 'Patient Supprimé');
-                Redirect::to('displayDisease');
+                Redirect::to('displayBiometry');
             } else {
                 echo $result;
             }

@@ -98,7 +98,7 @@ class PatientsController
             $data['id'] = $_POST['id'];
             $result = Patient::delete($data);
             if ($result === 'ok') {
-                Session::set('success', 'Patient Supprimé');
+                // Session::set('success', 'Patient Supprimé');
                 Redirect::to('homeuser');
             } else {
                 echo $result;

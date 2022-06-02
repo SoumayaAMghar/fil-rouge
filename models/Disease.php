@@ -24,4 +24,17 @@ class Disease{
         }
         $stmt = null;
     }
+    static public function delete($data){
+        $id = $data['id'];
+        try{
+            $query = 'DELETE FROM diseases WHERE id=:id';
+            $stmt = DB::connect()->prepare($query);
+            $stmt->execute(array(":id" => $id));
+            if($stmt->execute()){
+                return 'ok';
+            }
+        }catch(PDOException $ex){
+            echo 'error'.$ex->getMessage();
+        }
+    }
 }

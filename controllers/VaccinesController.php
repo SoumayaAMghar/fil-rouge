@@ -1,49 +1,48 @@
 <?php
 
-class AllergiesController{
+class VaccinesController{
     
-    public function getAllallergies(){
+    public function getAllvaccines(){
         // echo "<pre>";
         // print_r($_POST);
         // die;
         $id = $_SESSION['id_patient'];
         
         // print_r($_SESSION['id_patient']);
-        $vaccines = Allergie::getAllallerg($id);
+        $vaccines = Vaccine::getAllvac($id);
         return $vaccines;
     }
-    public function addAllergy(){
+    public function add(){
         if(isset($_POST['submit'])){
             $data = array(
                 'date' => $_POST['date'],
-                'allergy' => $_POST['allergy'],
-                'diagnostic' => $_POST['diagnostic'],
-                'treatment' => $_POST['treatment'],
+                'type' => $_POST['type'],
+                'vaccine' => $_POST['vaccine'],
                 'id_patient' =>$_SESSION['id_patient'],
             );
-            $result = Allergie::add($data);
+            $result = Vaccine::add($data);
             if($result === 'ok'){
-                // Session::set('success','allery added');
-                Redirect::to('displayAllergies');
+                // Session::set('success','Vaccine added');
+                Redirect::to('displayVaccine');
             }else{
                 echo $result;
             }
         }
     }
-
-    public function deleteAllergy()
+    public function deleteVaccine()
     {
+        // echo '<pre>';
+        // print_r($_POST);
+        // die;
         if (isset($_POST['id'])) {
             $data['id'] = $_POST['id'];
-        $result = Allergie::delete($data);
+        $result = Vaccine::delete($data);
             if ($result === 'ok') {
                 // Session::set('success', 'Patient Supprimé');
-                Redirect::to('displayAllergies');
+                Redirect::to('displayVaccine');
             } else {
                 echo $result;
             }
         }
     }
-
-    
 }
