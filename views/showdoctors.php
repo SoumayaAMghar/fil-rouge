@@ -1,10 +1,11 @@
 <?php
+
 if (isset($_POST['find'])) {
   $data = new DoctorsController();
   $doctors = $data->findDoctors();
 } else {
   $data = new DoctorsController();
-  $doctors = $data->getAllpending();
+  $doctors = $data->getAlldoctors();
 }
 
 
@@ -24,6 +25,7 @@ if (isset($_POST['reject'])) {
   $doc = new DoctorsController();
   $doc->updateDoctor($_POST["id"], "rejected");
 }
+
 $data = new DoctorsController();
 $nbrDoctors = $data->getNbrOfDoctors();
 
@@ -33,10 +35,13 @@ $nbrPending = $data->getNbrOfPending();
 $data = new DoctorsController();
 $nbrAccepted = $data->getNbrOfAccepted();
 
-if(isset($_POST['deletedoctor'])){
-  $existDoctor= new DoctorsController();
-  $existDoctor->deleteDoctor();
-}
+
+  
+    if(isset($_POST['deletedoctor'])){
+        $existDoctor= new DoctorsController();
+        $existDoctor->deleteDoctor();
+    }
+
 ?>
 
 
@@ -119,7 +124,7 @@ if(isset($_POST['deletedoctor'])){
 
         <div class="flex items-center">
           <div x-data="{ dropdownOpen: false }" class="relative">
-            <a href="<?php echo BASE_URL; ?>logoutadmin" title="Déconnexion" class="mr-2 mb-2 text-black">
+            <a href="<?php echo BASE_URL; ?>logout" title="Déconnexion" class="mr-2 mb-2 text-black">
               <i class="fa fa-power-off"></i> Logout
             </a>
 
@@ -135,59 +140,7 @@ if(isset($_POST['deletedoctor'])){
       </header>
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
         <div class="container mx-auto px-6 py-8">
-          <h3 class="text-gray-700 text-3xl font-medium">Dashboard</h3>
-
-          <div class="mt-4">
-            <div class="flex flex-wrap -mx-6">
-              <div class="w-full  px-6 sm:w-1/2 xl:w-1/3">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                  <div class="p-3 rounded-full bg-indigo-600  bg-opacity-75">
-                    <svg class="h-9 w-9 text-white" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M18.2 9.08889C18.2 11.5373 16.3196 13.5222 14 13.5222C11.6804 13.5222 9.79999 11.5373 9.79999 9.08889C9.79999 6.64043 11.6804 4.65556 14 4.65556C16.3196 4.65556 18.2 6.64043 18.2 9.08889Z" fill="currentColor"></path>
-                      <path d="M25.2 12.0444C25.2 13.6768 23.9464 15 22.4 15C20.8536 15 19.6 13.6768 19.6 12.0444C19.6 10.4121 20.8536 9.08889 22.4 9.08889C23.9464 9.08889 25.2 10.4121 25.2 12.0444Z" fill="currentColor"></path>
-                      <path d="M19.6 22.3889C19.6 19.1243 17.0927 16.4778 14 16.4778C10.9072 16.4778 8.39999 19.1243 8.39999 22.3889V26.8222H19.6V22.3889Z" fill="currentColor"></path>
-                      <path d="M8.39999 12.0444C8.39999 13.6768 7.14639 15 5.59999 15C4.05359 15 2.79999 13.6768 2.79999 12.0444C2.79999 10.4121 4.05359 9.08889 5.59999 9.08889C7.14639 9.08889 8.39999 10.4121 8.39999 12.0444Z" fill="currentColor"></path>
-                      <path d="M22.4 26.8222V22.3889C22.4 20.8312 22.0195 19.3671 21.351 18.0949C21.6863 18.0039 22.0378 17.9556 22.4 17.9556C24.7197 17.9556 26.6 19.9404 26.6 22.3889V26.8222H22.4Z" fill="currentColor"></path>
-                      <path d="M6.64896 18.0949C5.98058 19.3671 5.59999 20.8312 5.59999 22.3889V26.8222H1.39999V22.3889C1.39999 19.9404 3.2804 17.9556 5.59999 17.9556C5.96219 17.9556 6.31367 18.0039 6.64896 18.0949Z" fill="currentColor"></path>
-                    </svg>
-                  </div>
-
-                  <div class="mx-5">
-                    <h4 class="text-2xl font-semibold text-gray-700"><?= $nbrDoctors ?></h4>
-                    <div class="text-gray-500">All doctors</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                  <div class="p-3 rounded-full  bg-orange-600 bg-opacity-75">
-                    <i class="text-white w-6  mr-3 text-3xl fas fa-user-clock"></i>
-                    <!-- <i class="fa fa-clock-o" aria-hidden="true"></i> -->
-                  </div>
-
-                  <div class="mx-5">
-                    <h4 class="text-2xl font-semibold text-gray-700"><?= $nbrPending ?></h4>
-                    <div class="text-gray-500">Pending</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                  <div class="p-3 rounded-full  bg-green-600 bg-opacity-75">
-                    <i class="text-white w-6  mr-3 text-3xl fas fa-user-check"></i>
-                  </div>
-
-                  <div class="mx-5">
-                    <h4 class="text-2xl font-semibold text-gray-700"><?= $nbrAccepted ?></h4>
-                    <div class="text-gray-500">Accepted</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
+          <h3 class="text-gray-700 text-3xl font-medium">All doctors</h3>
 
           <div class="mt-8">
 
@@ -241,33 +194,20 @@ if(isset($_POST['deletedoctor'])){
 
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div class="flex space-x-2">
+                            <form method="post" class="mr-1">
+                              <input type="hidden" value="<?php echo $doctor['id']; ?>" class="idDoctor" name="id">
+                              <button name="accept" class="accepted w-11 h-11"> <i class="text-green-500 fas fa-user-check "></i> </button>
+                            </form>
 
-                              <!-- <form method="post" class="mr-1">
-                                <input type="hidden" class="status" name="status">
-                                <input type="hidden" value="" class="idDoctor" name="id">
-                                <div class="flex space-x-2">
-                                  <button name="submit" class="accepted bg-green-600 w-11 h-11" value="<?php echo $doctor['id']; ?>"> <i class="text-green-500 fas fa-user-check "></i> </button>
-                                  <button name="submit" class="rejected bg-red-600 w-11 h-11" value="<?php echo $doctor['id']; ?>"> <i class="text-red-500 fas fa-user-alt-slash "></i> </button>
-                                </div>
+                            <form method="post" class="mr-1">
+                              <input type="hidden" value="<?php echo $doctor['id']; ?>" class="idDoctor" name="id">
+                              <button name="reject" class="rejected  w-11 h-11"> <i class="text-red-500 fas fa-user-alt-slash "></i> </button>
+                            </form>
 
-                              </form> -->
-                             
-                              <form method="post" class="mr-1">
-                                <input type="hidden" value="<?php echo $doctor['id']; ?>" class="idDoctor" name="id">
-                                  <button name="accept" class="accepted w-11 h-11" > <i class="text-green-500 fas fa-user-check "></i> </button>
-                              </form>
-                             
-                              <form method="post" class="mr-1">
-                                <input type="hidden" value="<?php echo $doctor['id']; ?>" class="idDoctor" name="id">                          
-                                  <button name="reject" class="rejected  w-11 h-11" > <i class="text-red-500 fas fa-user-alt-slash "></i> </button>
-                              </form>
-                   
-                              <form method="post" class="mr-1" >
-                                <input type="hidden" name="id" value="<?php echo $doctor['id']; ?>">
-                                <button name="deletedoctor"><i class=" deleteclass mt-4 text-indigo-700 fa fa-trash"></i></button>
-                              </form>
-                            </div>
-
+                            <form method="post" class="mr-1">
+                              <input type="hidden" name="id" value="<?php echo $doctor['id']; ?>">
+                              <button name="deletedoctor" class=""><i class="mt-4 text-indigo-700 fa fa-trash"></i></button>
+                            </form>
                           </div>
                         </td>
 
@@ -284,14 +224,13 @@ if(isset($_POST['deletedoctor'])){
   </div>
 </div>
 
-<!-- <script>
+<script>
   let accepted = document.querySelectorAll('.accepted');
   let rejected = document.querySelectorAll('.rejected');
   let status = document.querySelector('.status');
   let idDoctor = document.querySelector('.idDoctor');
   accepted.forEach((e) => {
     e.addEventListener('click', function() {
-     
       status.value = 'accepted';
       idDoctor.value = e.value;
     })
@@ -304,33 +243,4 @@ if(isset($_POST['deletedoctor'])){
     })
 
   })
-</script> -->
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-
-$(document).ready(function()
-  {
-  $('.deleteclass').click(function(e)
-    {
-      e.preventDefault();
-      var id = $(this).val();
-      swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this imaginary file!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          
-          $.ajax({})
-
-        } else {
-          swal("Your imaginary file is safe!");
-        }
-       });
-    });
-  });
 </script>

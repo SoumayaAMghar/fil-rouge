@@ -10,7 +10,7 @@ class Doctor{
             $stmt->bindParam(':patente',$data['patente']);
             $stmt->execute();
             $doctor = $stmt->fetch(PDO::FETCH_OBJ);
-            // echo 'hellooooo';
+            // echo '<pre>';
             // print_r($doctor);
             // die;
             return $doctor;
@@ -38,10 +38,18 @@ class Doctor{
 
         $stmt = null;
     }
-    static public function getAlldoc()
+    static public function getAllpend()
     {
 
         $stmt = DB::connect()->prepare('SELECT * FROM doctors WHERE status="pending";');
+        $stmt->execute();
+        $doctor = $stmt->fetchAll();
+        return $doctor;
+    }
+    static public function getAlldoc()
+    {
+
+        $stmt = DB::connect()->prepare('SELECT * FROM doctors WHERE id = id;');
         $stmt->execute();
         $doctor = $stmt->fetchAll();
         return $doctor;
@@ -60,7 +68,52 @@ class Doctor{
         // $stmt->close();
         $stmt = null;
     }
-   
-}
+    static public function nbrOfDoctors()
+    {
+        $stmt  =DB::connect()->prepare('SELECT COUNT(*) as nbrOfDoctors FROM doctors');
+        $stmt->execute();
+        $doctors = $stmt->fetchColumn();
+        return $doctors;
+    }
+    static public function nbrOfAccepted()
+    {
+        $stmt  =DB::connect()->prepare('SELECT COUNT(status) as nbrOfAccepted FROM doctors WHERE status = "accepted";');
+        $stmt->execute();
+        $doctors = $stmt->fetchColumn();
+        return $doctors;
+    }
+    static public function nbrOfPending()
+    {
+        $stmt  =DB::connect()->prepare('SELECT COUNT(status) as nbrOfPending FROM doctors WHERE status = "pending";');
+        $stmt->execute();
+        $doctors = $stmt->fetchColumn();
+        return $doctors;
+    }
 
-?>
+
+static public function searchDoctors($data){
+    $search = $data['search'];
+    try{
+        $query = 'SELECT * FROM doctors WHERE firstname  LIKE ? OR lastname LIKE ?';
+        $stmt = DB::connect()->prepare($query);
+        $stmt->execute(array('%'.$search.'%','%'.$search.'%'));
+        $Doctors =$stmt->fetchAll();
+        return $Doctors;
+    }catch(PDOException $ex){
+        echo 'error'.$ex->getMessage();
+    }
+}
+static public function delete($data){
+    $id = $data['id'];
+    try{
+        $query = 'DELETE FROM doctors WHERE id=:id';
+        $stmt = DB::connect()->prepare($query);
+        $stmt->execute(array(":id" => $id));
+        if($stmt->execute()){
+            return 'ok';
+        }
+    }catch(PDOException $ex){
+        echo 'error'.$ex->getMessage();
+    }
+}
+}

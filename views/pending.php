@@ -13,8 +13,15 @@
             <div class="w-full py-6 z-20">
             <div class="w-full mb-16 px-24 z-10 ">
                 <h1 class="text-3xl font-bold text-left tracking-wide text-center">Your request has been received and is currently being processed.</h1>
-                <!-- <p class="text-xl my-4 text-center">is now available for everyone - Théragora.</p> -->
+                
             </div>
+
+                
+                <div class="text-grey-dark mt-6">
+                    <a class="no-underline border-b border-blue text-blue" href="<?php echo BASE_URL ?>login">
+                        Back to Login
+                    </a>.
+                </div>
             </div>
         </div>
     </section>
