@@ -15,6 +15,7 @@ class BiometriesController{
     public function add(){
         if(isset($_POST['submit'])){
             $data = array(
+                'date' => $_POST['date'],
                 'age' => $_POST['age'],
                 'weight' => $_POST['weight'],
                 'height' => $_POST['height'],
@@ -45,5 +46,35 @@ class BiometriesController{
                 echo $result;
             }
         }
+    }
+    public function getOnebiometry()
+    {
+        if (isset($_POST['id'])) {
+            $data = array('id' => $_POST['id']);
+            $biometry = Biometry::getbiometry($data);
+            return $biometry;
+        }
+    }
+
+    public function updatebiometry()
+    {
+
+            $data = array(
+                'id' => $_POST['id'],
+                'date' => $_POST['date'],
+                'age' => $_POST['age'],
+                'weight' => $_POST['weight'],
+                'height' => $_POST['height'],
+                'blood_group' => $_POST['blood_group'],
+                'id_patient' => $_SESSION['id_patient'],
+            );
+            $result = Biometry::update($data);
+            if ($result === 'ok') {
+                // Session::set('success', 'disaese Modifié');
+                Redirect::to('displayBiometry');
+            } else {
+                echo $result;
+            }
+        
     }
 }

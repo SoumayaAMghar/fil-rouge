@@ -28,29 +28,20 @@ if (isset($_POST['id_patient'])) {
       </div>
 
       <nav class="mt-10">
-
-        <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
           </svg>
-          <!-- <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-          </svg> -->
           <span class="mx-3">Dashboard</span>
         </a>
-
         <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?= BASE_URL ?>addPatient">
-
           <i class=" text-whit fa fa-plus"></i>
           <span class="mx-3">Add Patient</span>
         </a>
-
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>displayPatient">
+        <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="<?php echo BASE_URL; ?>displayPatient">
           <i class="fas fa-info-circle"></i>
           <span class="mx-3">Patient's Informations</span>
-        </a>
-
         </a>
       </nav>
     </div>
@@ -136,31 +127,37 @@ if (isset($_POST['id_patient'])) {
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div class="flex-shrink-0 h-10 w-10">
-                            <img class="h-10 w-10 rounded-full" src="http://localhost/fil-rouge/views/includes/images/<?= $attachement['attachement']?>" alt="">
+                            <a href="http://localhost/fil-rouge/views/includes/images/<?= $attachement['attachement'] ?>" target="_blank">
+                              <img class="h-10 w-10 rounded-full" src="http://localhost/fil-rouge/views/includes/images/<?= $attachement['attachement'] ?>" alt="">
+                            </a>
                           </div>
 
                         </td>
 
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <div>
+
+                          <div class="flex space-between">
+                            <form method="post" class="mr-1" action="updateAttachement">
+                              <input type="hidden" name="id" value="<?php echo $attachement['id']; ?>">
+                              <button class="text-emerald-400"><i class="fa fa-edit"></i></button>
+                            </form>
                             <form method="post" class="mr-1" action="deleteattachement">
                               <input type="hidden" name="id" value="<?php echo $attachement['id']; ?>">
                               <button class="text-red-700"><i class="fa fa-trash"></i></button>
                             </form>
                           </div>
+                        </td>
+
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+
               </div>
-              </td>
-
-              </tr>
-            <?php endforeach; ?>
-            </tbody>
-            </table>
-
             </div>
           </div>
         </div>
+      </main>
     </div>
-    </main>
   </div>
-</div>
 </div>

@@ -1,7 +1,11 @@
 <?php
-
-$data = new DiseasesController();
-$diseases = $data->getAlldiseases();
+if (isset($_POST['find'])) {
+  $data = new DiseasesController();
+  $diseases = $data->findDiseases();
+} else {
+  $data = new DiseasesController();
+  $diseases = $data->getAlldiseases();
+}
 
 $data = new PatientsController();
 $patient = $data->getOnePatient();
@@ -59,7 +63,7 @@ $patient = $data->getOnePatient();
         </div>
       </div>
       <nav class="mt-10">
-        <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
@@ -71,26 +75,50 @@ $patient = $data->getOnePatient();
           <i class=" text-whit fa fa-plus"></i>
           <span class="mx-3">Add Patient</span>
         </a>
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>displayPatient">
+        <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="<?php echo BASE_URL; ?>displayPatient">
           <i class=" text-whit fas fa-info-circle"></i>
           <span class="mx-3">Patient's Informations</span>
         </a>
       </nav>
     </div>
     <div class="flex-1 flex flex-col overflow-hidden">
-      <header class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-indigo-600">
+    <header class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-indigo-600">
         <div class="flex items-center">
           <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </button>
+
+          <div class="relative mx-4 lg:mx-0">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+              <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                </path>
+              </svg>
+            </span>
+
+            <form method="post" data-netlify="true"> 
+              <input class="form-input w-32 sm:w-64 rounded-md pl-10 pr-4 focus:border-indigo-600" type="text" name="search" placeholder="Search">
+              <button class="btn btn-info btn-sm" name="find" type="submit"></button>
+            </form>
+
+          </div>
         </div>
+
         <div class="flex items-center">
           <div x-data="{ dropdownOpen: false }" class="relative">
             <a href="<?php echo BASE_URL; ?>logout" title="Déconnexion" class="mr-2 mb-2 text-black">
               <i class="fa fa-power-off"></i> Logout
             </a>
+
+            <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
+
+            <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10" style="display: none;">
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Products</a>
+              <a href="/login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
+            </div>
           </div>
         </div>
       </header>
@@ -131,10 +159,16 @@ $patient = $data->getOnePatient();
                             <?php echo $disease['status']; ?></span>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <form method="post" class="" action="deletedisease">
-                            <input type="hidden" name="id" value="<?php echo $disease['id']; ?>">
-                            <button class=""><i class="fa fa-trash"></i></button>
-                          </form>
+                          <div class="flex space-between">
+                              <form method="post" class="mr-1" action="updateDisease" data-netlify="true">
+                                <input type="hidden" name="id" value="<?php echo $disease['id']; ?>">
+                                <button class="text-emerald-400"><i class="fa fa-edit"></i></button>
+                              </form>
+                              <form method="post" class="ml-1" action="deletedisease">
+                                <input type="hidden" name="id" value="<?php echo $disease['id']; ?>">
+                                <button class=""><i class="text-red-600 fa fa-trash"></i></button>
+                              </form>
+                            </div>
                         </td>
                       </tr>
                     <?php endforeach; ?>

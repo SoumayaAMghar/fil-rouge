@@ -46,13 +46,13 @@ class Patient{
         }
     }
     static public function add($data){
-        $stmt = DB::connect()->prepare('INSERT INTO patients (firstname,lastname,birthday,cin,phone,blood_group) VALUES (:firstname,:lastname,:birthday,:cin,:phone,:blood_group)');
+        $stmt = DB::connect()->prepare('INSERT INTO patients (firstname,lastname,birthday,cin,phone) VALUES (:firstname,:lastname,:birthday,:cin,:phone)');
         $stmt->bindParam(':firstname',$data['firstname']);
         $stmt->bindParam(':lastname',$data['lastname']);
         $stmt->bindParam(':birthday',$data['birthday']);
         $stmt->bindParam(':cin',$data['cin']);
         $stmt->bindParam(':phone',$data['phone']);
-        $stmt->bindParam(':blood_group',$data['blood_group']);
+        // $stmt->bindParam(':blood_group',$data['blood_group']);
 
         if($stmt->execute()){
             return 'ok';
@@ -66,14 +66,14 @@ class Patient{
         // echo "<pre>";
         // print_r($data);
         // die;
-        $stmt = DB::connect()->prepare('UPDATE patients SET firstname = :firstname , lastname = :lastname ,  birthday = :birthday , cin = :cin , phone = :phone , blood_group = :blood_group WHERE id =:id');
+        $stmt = DB::connect()->prepare('UPDATE patients SET firstname = :firstname , lastname = :lastname ,  birthday = :birthday , cin = :cin , phone = :phone  WHERE id =:id');
         $stmt->bindParam(':id',$data['id'] );
         $stmt->bindParam(':firstname',$data['firstname'] );
         $stmt->bindParam(':lastname',$data['lastname'] );
         $stmt->bindParam(':birthday',$data['birthday'] );
         $stmt->bindParam(':cin',$data['cin'] );
         $stmt->bindParam(':phone',$data['phone'] );
-        $stmt->bindParam(':blood_group',$data['blood_group'] );
+        // $stmt->bindParam(':blood_group',$data['blood_group'] );
         if($stmt->execute()){
             return 'ok';
         }else{

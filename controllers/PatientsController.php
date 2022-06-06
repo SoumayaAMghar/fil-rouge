@@ -46,7 +46,7 @@ class PatientsController
                 'birthday' => $_POST['birthday'],
                 'cin' => $_POST['cin'],
                 'phone' => $_POST['phone'],
-                'blood_group' => $_POST['blood_group'],
+                // 'blood_group' => $_POST['blood_group'],
             );
             $result = Patient::add($data);
             if ($result === 'ok') {
@@ -80,11 +80,11 @@ class PatientsController
                 'birthday' => $_POST['birthday'],
                 'cin' => $_POST['cin'],
                 'phone' => $_POST['phone'],
-                'blood_group' => $_POST['blood_group'],
+                // 'blood_group' => $_POST['blood_group'],
             );
             $result = Patient::update($data);
             if ($result === 'ok') {
-                Session::set('success', 'pateint Modifié');
+                // Session::set('success', 'pateint Modifié');
                 Redirect::to('homeuser');
             } else {
                 echo $result;

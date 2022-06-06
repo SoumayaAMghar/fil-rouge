@@ -45,4 +45,36 @@ class VaccinesController{
             }
         }
     }
+    public function getOneVaccine()
+    {
+        if (isset($_POST['id'])) {
+            $data = array('id' => $_POST['id']);
+            $Vaccine = Vaccine::getVaccine($data);
+            return $Vaccine;
+        }
+    }
+
+    public function updateVaccine()
+    {
+        // echo "<pre>";
+        // print_r($_POST);
+        // die;
+        if (isset($_POST['submit'])) {
+
+            $data = array(
+                'id' => $_POST['id'],
+                'date' => $_POST['date'],
+                'type' => $_POST['type'],
+                'vaccine' => $_POST['vaccine'],
+                'id_patient' => $_SESSION['id_patient'],
+            );
+            $result = Vaccine::update($data);
+            if ($result === 'ok') {
+                // Session::set('success', 'disaese Modifié');
+                Redirect::to('displayVaccine');
+            } else {
+                echo $result;
+            }
+        }
+    }
 }

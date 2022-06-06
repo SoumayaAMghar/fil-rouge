@@ -1,16 +1,18 @@
 <?php
-if (isset($_POST['submit'])) {
-  $newBiometry = new BiometriesController();
-  $newBiometry->add();
-}
-if (isset($_POST['patient_id'])) {
-  $data = new PatientsController();
-  $patient = $data->getOnePatient();
+if(isset($_POST['patient_id'])){
   $patient_id = $_POST['patient_id'];
 }
+if (isset($_POST['id']) && !isset($_POST['submit'])) {
+  $existDisease = new DiseasesController();
+  $Disease = $existDisease->getOneDisease();
+ 
+}
 
+if (isset($_POST['submit'])) {
+  $existDisease = new DiseasesController();
+  $existDisease->updateDisease();
+}
 ?>
-
 
 <div>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -56,8 +58,6 @@ if (isset($_POST['patient_id'])) {
         </div>
 
         <div class="flex items-center">
-
-
           <div x-data="{ dropdownOpen: false }" class="relative">
             <a href="<?php echo BASE_URL; ?>logout" title="Déconnexion" class="mr-2 mb-2 text-black">
               <i class="fa fa-power-off"></i> Logout
@@ -79,41 +79,27 @@ if (isset($_POST['patient_id'])) {
 
           <div class="flex justify-center items-center w-full ">
             <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
-              <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">ADD Biometries</h1>
+              <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">Edit a Disease</h1>
               <form method="post">
                 <div class="flex flex-col mb-4">
                   <label class="mb-2 font-bold text-lg text-gray-900" for="date">Date</label>
-                  <input class="border py-2 px-3 text-grey-800" type="date" name="date" id="date" required>
+                  <input class="border py-2 px-3 text-grey-800" type="date" name="date" id="date" value="<?php echo $Disease->date; ?>" required>
+                  <input type="hidden" name="id" value="<?php echo $Disease->id; ?>">
                 </div>
                 <div class="flex flex-col mb-4">
-                  <label class="mb-2 font-bold text-lg text-gray-900" for="age">Age</label>
-                  <input class="border py-2 px-3 text-grey-800" type="text" name="age" id="age" required>
+                  <label class="mb-2 font-bold text-lg text-gray-900" for="disease">Disease</label>
+                  <input class="border py-2 px-3 text-grey-800" type="text" name="disease" id="disease" value="<?php echo $Disease->disease; ?>" required>
                 </div>
                 <div class="flex flex-col mb-4">
-                  <label class="mb-2 font-bold text-lg text-gray-900" for="weight">Weight</label>
-                  <input class="border py-2 px-3 text-grey-800" weight="text" name="weight" id="weight" required>
-                </div>
-                <div class="flex flex-col mb-4">
-                  <label class="mb-2 font-bold text-lg text-gray-900" for="height">Height</label>
-                  <input class="border py-2 px-3 text-grey-800" type="text" name="height" id="height" required>
-                </div>
-                <div class="flex flex-col mb-4">
-                  <label class="mb-2 font-bold text-lg text-gray-900" for="blood_group">Blood group</label>
-                  <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="height" id="height" > -->
-                  <select name="blood_group" required>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
+                  <label class="mb-2 font-bold text-lg text-gray-900" for="status">status</label>
+                  <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="status" id="status" value="<?php echo $Disease->status; ?>"> -->
+                  <select class="border py-2 px-3 text-grey-800" name="status" required>
+                    <option class="bg-red-400 rounded p-2" value="<?php echo $Disease->status = 'Active'; ?>">Active</option>
+                    <option class="bg-green-400 rounded p-2" value="<?php echo $Disease->status = 'Inactive'; ?>">Inactive</option>
                   </select>
                 </div>
-
                 <div class="pt-4 flex items-center justify-center">
-                  <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>displayBiometry">
+                  <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>displayDisease">
                     <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg> Cancel
@@ -123,7 +109,6 @@ if (isset($_POST['patient_id'])) {
               </form>
             </div>
           </div>
-
 
         </div>
       </main>

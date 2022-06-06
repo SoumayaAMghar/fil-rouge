@@ -37,4 +37,34 @@ class Vaccine{
             echo 'error'.$ex->getMessage();
         }
     }
+    static public function update($data){
+        // echo "<pre>";
+        // print_r($data);
+        // die;
+        $stmt = DB::connect()->prepare('UPDATE vaccine SET date = :date , type = :type , vaccine = :vaccine , id_patient = :id_patient WHERE id =:id');
+        $stmt->bindParam(':id',$data['id'] );
+        $stmt->bindParam(':date',$data['date'] );
+        $stmt->bindParam(':type',$data['type'] );
+        $stmt->bindParam(':vaccine',$data['vaccine'] );
+        $stmt->bindParam(':id_patient',$data['id_patient'] );
+        if($stmt->execute()){
+            return 'ok';
+        }else{
+            return 'error';
+        }
+        $stmt = null;
+    }
+
+    static public function getVaccine($data){
+        $id = $data['id'];
+        try{
+            $query = 'SELECT * FROM vaccine WHERE id=:id';
+            $stmt = DB::connect()->prepare($query);
+            $stmt->execute(array(":id" => $id));
+            $patient = $stmt->fetch(PDO::FETCH_OBJ);
+            return $patient;
+        }catch(PDOException $ex){
+            echo 'error'.$ex->getMessage();
+        }
+    }
 }

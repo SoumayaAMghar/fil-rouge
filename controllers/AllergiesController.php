@@ -17,7 +17,7 @@ class AllergiesController{
             $data = array(
                 'date' => $_POST['date'],
                 'allergy' => $_POST['allergy'],
-                'diagnostic' => $_POST['diagnostic'],
+                'diagnostic_method' => $_POST['diagnostic'],
                 'treatment' => $_POST['treatment'],
                 'id_patient' =>$_SESSION['id_patient'],
             );
@@ -44,6 +44,38 @@ class AllergiesController{
             }
         }
     }
+    public function getOneAllergy()
+    {
+        if (isset($_POST['id'])) {
+            $data = array('id' => $_POST['id']);
+            $Allergy = Allergie::getAllergy($data);
+            return $Allergy;
+        }
+    }
 
+    public function updateAllergy()
+    {
+        // echo "<pre>";
+        // print_r($_POST);
+        // die;
+        if (isset($_POST['submit'])) {
+
+            $data = array(
+                'id' => $_POST['id'],
+                'date' => $_POST['date'],
+                'allergy' => $_POST['allergy'],
+                'diagnostic_method' => $_POST['diagnostic'],
+                'treatment' => $_POST['treatment'],
+                'id_patient' => $_SESSION['id_patient'],
+            );
+            $result = Allergie::update($data);
+            if ($result === 'ok') {
+                // Session::set('success', 'disaese Modifié');
+                Redirect::to('displayAllergies');
+            } else {
+                echo $result;
+            }
+        }
+    }
     
 }

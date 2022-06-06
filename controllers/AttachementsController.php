@@ -43,4 +43,35 @@ class AttachementsController {
             }
         }
     }
+    public function getOneAttachement()
+    {
+        if (isset($_POST['id'])) {
+            $data = array('id' => $_POST['id']);
+            $Attachement = Attachement::getAttachement($data);
+            return $Attachement;
+        }
+    }
+
+    public function updateAttachement()
+    {
+        // echo "<pre>";
+        // print_r($_FILES['attachement']['name']);
+        // die;
+            $data = array(
+                'id' => $_POST['id'],
+                'date' => $_POST['date'],
+                'type' => $_POST['type'],
+                'titre' => $_POST['titre'],
+                'attachement' => $_FILES['attachement']['name'],
+                'id_patient' => $_SESSION['id_patient'],
+            );
+            $result = Attachement::update($data);
+            if ($result === 'ok') {
+                // Session::set('success', 'disaese Modifié');
+                Redirect::to('displayAttachement');
+            } else {
+                echo $result;
+            }
+        
+    }
 }

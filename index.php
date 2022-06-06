@@ -7,7 +7,7 @@ require_once './views/includes/alerts.php';
 
 $home = new HomeController();
 
-$pages = ['showdoctors', 'homeadmin', 'homeuser', 'addPatient', 'update', 'delete', 'login', 'loginadmin', 'logoutadmin', 'register', 'logout', 'pending', 'rejected', 'displayPatient', 'adddisease', 'addattachement', 'addBiometry', 'addVaccine', 'addallergy', 'displayAttachement', 'displayDisease', 'displayAllergies', 'displayVaccine', 'displayBiometry', 'deleteallergy', 'deleteattachement', 'deletebiometry', 'deletevaccine', 'deletedisease'];
+$pages = ['showdoctors', 'homeadmin', 'homeuser', 'addPatient', 'update', 'delete', 'login', 'loginadmin', 'logoutadmin', 'register', 'logout', 'pending', 'rejected', 'displayPatient', 'adddisease', 'addattachement', 'addBiometry', 'addVaccine', 'addallergy', 'displayAttachement', 'displayDisease', 'displayAllergies', 'displayVaccine', 'displayBiometry', 'deleteallergy', 'deleteattachement', 'deletebiometry', 'deletevaccine', 'deletedisease','updateDisease','updateAttachement','updateAllery','updateVaccine','updateBiometry'];
 // print_r($_SESSION);
 if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     // print_r(('hello world!'));

@@ -26,48 +26,22 @@ $patient_id = $_POST['patient_id'];
           </a>
         </div>
       </div>
-
       <nav class="mt-10">
-        <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
           </svg>
-          <!-- <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-          </svg> -->
           <span class="mx-3">Dashboard</span>
         </a>
-
         <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?= BASE_URL ?>addPatient">
 
           <i class=" text-whit fa fa-plus"></i>
           <span class="mx-3">Add Patient</span>
         </a>
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>displayPatient">
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z">
-                        </path>
-                    </svg>
-
-                    <span class="mx-3">Patient's Informations</span>
-                </a>
-        <!-- <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="/tables">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
-            </path>
-          </svg>
-
-          <span class="mx-3">Tables</span>
-        </a> -->
-
-        <!-- <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="/forms">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-            </path>
-          </svg>
-
-          <span class="mx-3">Forms</span> -->
+        <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="<?php echo BASE_URL; ?>displayPatient">
+          <i class=" text-whit fas fa-info-circle"></i>
+          <span class="mx-3">Patient's Informations</span>
         </a>
       </nav>
     </div>
@@ -80,20 +54,6 @@ $patient_id = $_POST['patient_id'];
             </svg>
           </button>
 
-          <div class="relative mx-4 lg:mx-0">
-            <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
-              <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
-                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                </path>
-              </svg>
-            </span>
-
-            <form method="post">
-              <input class="form-input w-32 sm:w-64 rounded-md pl-10 pr-4 focus:border-indigo-600" type="text" name="search" placeholder="Search">
-              <button class="btn btn-info btn-sm" name="find" type="submit"></button>
-            </form>
-
-          </div>
         </div>
 
         <div class="flex items-center">
@@ -124,16 +84,16 @@ $patient_id = $_POST['patient_id'];
                                     <form method="post">
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="date">Date</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="date" name="date" id="date">
+                                            <input class="border py-2 px-3 text-grey-800" type="date" name="date" id="date" required>
 
                                         </div>
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="type">Type</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="type" id="type">
+                                            <input class="border py-2 px-3 text-grey-800" type="text" name="type" id="type" required>
                                         </div>
                                         <div class="flex flex-col mb-4">
                                             <label class="mb-2 font-bold text-lg text-gray-900" for="vaccine">Vaccine</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="vaccine" id="vaccine" >
+                                            <input class="border py-2 px-3 text-grey-800" type="text" name="vaccine" id="vaccine" required>
                                         </div>
                                                                                 
                                         <div class="pt-4 flex items-center justify-center">
