@@ -24,7 +24,7 @@ class Doctor{
         $stmt->bindParam(':patente',$data['patente']);
         $stmt->execute();
         $doctors =$stmt->fetchAll();
-        // print_r($data);
+        // print_r($doctors);
         // die;
        if(empty($doctors)){
         try{

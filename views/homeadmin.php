@@ -266,7 +266,7 @@ if(isset($_POST['deletedoctor'])){
                                 <input type="hidden" name="id" value="<?php echo $doctor['id']; ?>">
                                 <button name="deletedoctor"><i class=" deleteclass mt-4 text-indigo-700 fa fa-trash"></i></button>
                               </form>
-                            </div>up
+                            </div>
 
                           </div>
                         </td>
