@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 03 juin 2022 à 00:27
+-- Généré le : mar. 14 juin 2022 à 18:06
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.1
 
@@ -51,7 +51,7 @@ CREATE TABLE `allergy` (
   `id` int(11) NOT NULL,
   `id_patient` int(11) NOT NULL,
   `allergy` varchar(255) NOT NULL,
-  `diagnostic` varchar(100) NOT NULL,
+  `diagnostic_method` varchar(100) NOT NULL,
   `treatment` varchar(255) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -60,9 +60,9 @@ CREATE TABLE `allergy` (
 -- Déchargement des données de la table `allergy`
 --
 
-INSERT INTO `allergy` (`id`, `id_patient`, `allergy`, `diagnostic`, `treatment`, `date`) VALUES
-(4, 9, 'Dust mite allergy', 'eczema', 'none', '2022-06-01'),
-(6, 2, 'Hic expedita ex ad p', 'Itaque ut ad rerum d', 'Laudantium similiqu', '1998-11-12');
+INSERT INTO `allergy` (`id`, `id_patient`, `allergy`, `diagnostic_method`, `treatment`, `date`) VALUES
+(10, 55, ' insects allergy', 'prick testing', 'none', '2022-06-14'),
+(11, 55, 'dust mites allergy', 'prick testing', 'antihistaminic', '2022-06-14');
 
 -- --------------------------------------------------------
 
@@ -84,9 +84,8 @@ CREATE TABLE `attachement` (
 --
 
 INSERT INTO `attachement` (`id`, `id_patient`, `date`, `type`, `titre`, `attachement`) VALUES
-(3, 9, '2022-05-31', 'Medical analyses', 'diabetes', 'file-pdf'),
-(9, 2, '1981-07-18', 'Minim dolor officia ', 'Ut eius aliquid duis', 'Capture.PNG'),
-(10, 2, '2018-03-10', 'Quam eos quo minim e', 'Est sit animi nulla', 'ab_medical-ai-1030x438.jpg');
+(15, 55, '2022-06-02', 'medical analyses', 'NFS', 'nfs.jpg'),
+(16, 55, '2022-06-14', 'medical analyses', 'NFS', 'classD.PNG');
 
 -- --------------------------------------------------------
 
@@ -97,6 +96,7 @@ INSERT INTO `attachement` (`id`, `id_patient`, `date`, `type`, `titre`, `attache
 CREATE TABLE `biometry` (
   `id` int(11) NOT NULL,
   `id_patient` int(11) NOT NULL,
+  `date` date NOT NULL,
   `age` varchar(10) NOT NULL,
   `weight` varchar(10) NOT NULL,
   `height` varchar(10) NOT NULL,
@@ -107,9 +107,8 @@ CREATE TABLE `biometry` (
 -- Déchargement des données de la table `biometry`
 --
 
-INSERT INTO `biometry` (`id`, `id_patient`, `age`, `weight`, `height`, `blood_group`) VALUES
-(1, 2, '23', '67 KG', '1.65 m', 'O+'),
-(2, 2, '56', '45', '1.52', 'A-');
+INSERT INTO `biometry` (`id`, `id_patient`, `date`, `age`, `weight`, `height`, `blood_group`) VALUES
+(8, 55, '2022-06-13', '24 Years', '50 Kg', '1.63 m', 'A+');
 
 -- --------------------------------------------------------
 
@@ -130,24 +129,11 @@ CREATE TABLE `diseases` (
 --
 
 INSERT INTO `diseases` (`id`, `id_patient`, `date`, `disease`, `status`) VALUES
-(1, 3, '2022-05-31', 'Cholesterol', 'Active'),
-(2, 7, '2022-05-26', 'Diabetes mellitus', 'Active'),
-(3, 2, '2022-05-01', 'Cardiomyopathy', 'Active'),
-(4, 7, '2022-04-06', 'Cholesterol', 'Inactive'),
-(5, 7, '2012-10-17', 'Anemia', 'Inactive'),
-(6, 7, '2018-05-01', 'Alzheimer', 'Active'),
-(16, 2, '2022-05-30', 'cancer', 'Inactive'),
-(17, 3, '2022-05-23', 'grippe', 'Active'),
-(18, 3, '2022-05-30', 'cancer', 'Active'),
-(19, 3, '2022-05-31', 'Teeeeeeeeeeeeeeeeest', 'Inactive'),
-(20, 3, '2022-06-01', 'grippe', 'Inactive'),
-(21, 3, '1991-08-26', 'In tenetur nihil sun', 'Inactive'),
-(22, 3, '1970-06-26', 'Ratione adipisicing ', 'Active'),
-(23, 3, '2022-05-30', 'grippe', 'Inactive'),
-(24, 3, '2009-02-20', 'Ea quia dolor nisi e', 'Inactive'),
-(29, 2, '2002-04-01', 'Vitae consequatur li', 'Inactive'),
-(30, 2, '2022-06-09', 'grippe', 'Active'),
-(31, 2, '1974-10-16', 'fungy', 'Active');
+(38, 55, '2022-06-09', 'grippe', 'Active'),
+(39, 55, '2022-06-15', 'cancer', 'Inactive'),
+(40, 55, '2022-06-14', 'grippe', 'Active'),
+(41, 70, '2022-06-16', 'mamridach', 'Inactive'),
+(42, 55, '2022-06-21', 'flu', 'Active');
 
 -- --------------------------------------------------------
 
@@ -173,13 +159,9 @@ CREATE TABLE `doctors` (
 
 INSERT INTO `doctors` (`id`, `firstname`, `lastname`, `speciality`, `phone`, `email`, `password`, `patente`, `status`) VALUES
 (1, 'soma', 'soma', 'soma', '23456789', 'soma@gmail.com', '$2y$12$SfPnOZDn14VKCqDxGfBNCOUDrgLiyfaxhkoDmjeBmO53VgZcrgeD2', 'soma', 'accepted'),
-(3, 'abdo', 'abdo', 'abdo', '623813946', 'abdo@abdo.com', '$2y$12$Ps.GeL/srEBNJJ9HqkZAz.EOUd4QASuqNnNcKjN0VTqyiz4UkyLHa', 'abdo', 'rejected'),
-(4, 'Kimberley', 'Donaldson', 'Quae lorem perferend', '1', 'hagimo@mailinator.com', '$2y$12$jvJTOGbjJ/MfF1NguuYi4OOGtRMN6411INyMmhaMr41arAYzoTN/S', 'Irure minima fugit ', 'rejected'),
 (5, 'zineb', 'zineb', 'zineb', '631576604', 'zineb@zineb.com', '$2y$12$096DQbkQmSHJ/55eif0KC.ApP4gvuA/zI/9hT.YPgmz2vGip/I75a', 'zineb', 'accepted'),
-(6, 'Pascale', 'Carpenter', 'Anim odio qui sint i', '1', 'wigula@mailinator.com', '$2y$12$1NIepMHbWa/Lcuzzv7eQhOahRlwiTzoHhBqnbzUn6fCwpen.MuO0O', 'Repellendus Ipsam o', 'pending'),
-(10, 'Gloria', 'Eaton', 'Corporis qui minima ', '1', 'rexyzecoko@mailinator.com', '$2y$12$CK/XG.wqkedKcuHNpLUgnepq.z4MknGHpIqS59CUNzHV72uhM4Zky', 'Quia aliquid cupidit', 'pending'),
-(11, 'Keith', 'Vasquez', 'Maxime similique sit', '1', 'lopod@mailinator.com', '$2y$12$d4kk2YzRSkq6iGcqdw54q.dmPbLl3fbrO4rI7JYuZ2f1SaFDUMbaC', 'Vasquez', 'pending'),
-(12, 'Scarlett', 'Ochoa', 'Ea aute asperiores e', '1', 'butofep@mailinator.com', '$2y$12$alugbPbeESZiHmPiraZcselLOxCztDFP0uNyg7EpaJa0.ZP2UXAX6', 'Scarlett', 'rejected');
+(27, 'dounya', 'dounya', 'tbib', '0633551656', 'dounya@gmail.com', '$2y$12$Azm.Ep1ukMvbLUN9uDTmk.rDzlOq3j2hdZjFYKH.1jCQZdqtW3B9i', 'Fa123', 'accepted'),
+(29, 'ABDEL', 'Goodwin', 'HHHHH', '+1 (993) 283-6753', 'xamen@mailinator.com', '$2y$12$eoq3ivAzEOwQHNpG5/DrIe9rdWphwiqaxwKXlMSWv8cX.YVePCl9y', 'DD345667', 'pending');
 
 -- --------------------------------------------------------
 
@@ -194,24 +176,22 @@ CREATE TABLE `patients` (
   `gender` enum('male','female') NOT NULL,
   `birthday` date NOT NULL,
   `cin` varchar(20) NOT NULL,
-  `phone` varchar(20) NOT NULL,
-  `blood_group` varchar(11) NOT NULL
+  `phone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `patients`
 --
 
-INSERT INTO `patients` (`id`, `firstname`, `lastname`, `gender`, `birthday`, `cin`, `phone`, `blood_group`) VALUES
-(2, 'Herrod', 'Blackwell', 'male', '1990-05-07', 'FG456788', '2147483647', 'B-'),
-(3, 'test2', 'test2', 'female', '1992-05-01', 'Q23456', '3456789', 'A+'),
-(5, 'Harlan', 'Rich', 'male', '1973-08-11', 'HH124567', '631576604', 'O+'),
-(7, 'Christopher', 'Patterson', 'male', '1991-04-01', 'JH345678', '1567156', 'AB-'),
-(8, 'Stewart', 'Scott', 'female', '2015-01-25', 'AA1234567', '123418', 'A+'),
-(9, 'Hale', 'Vincent', 'male', '1998-01-04', 'Q1234567', '2345863', 'B+'),
-(10, 'Wallace', 'Stanley', 'male', '2002-08-10', 'HH191652', '762340439', 'AB+'),
-(12, 'Jasper', 'Simon', 'male', '0000-00-00', 'Ex voluptatibus expl', '00212688643167', ''),
-(13, 'soumaya', 'amghar', 'female', '1994-02-02', 'Q305048', '0700740294', 'A+');
+INSERT INTO `patients` (`id`, `firstname`, `lastname`, `gender`, `birthday`, `cin`, `phone`) VALUES
+(55, 'Nash', 'Gallagher', 'male', '2021-11-19', 'HH125891', '+1 (578) 834-7989'),
+(56, 'Melvin', 'Watkins', 'male', '1976-12-01', 'HH190467', '+1 (516) 209-3522'),
+(59, 'Silas', 'Walters', 'male', '1983-03-05', 'HH124567', '+1 (317) 712-3107'),
+(60, 'Erica', 'Noble', 'female', '2013-10-06', 'HH390467', '+1 (541) 987-6807'),
+(64, 'Devin', 'Rollins', 'female', '2011-09-06', 'Q305048', '+1 (994) 489-1195'),
+(70, 'dounya', 'dou', 'female', '0000-00-00', 'HHHHHHHH1', '1234567890'),
+(71, 'test', 'test', 'male', '0000-00-00', 'Q398909', '+1 (981) 343-5941'),
+(72, 'Mariam', 'Strong', 'female', '0000-00-00', 'D564321', '0677889900');
 
 -- --------------------------------------------------------
 
@@ -232,8 +212,7 @@ CREATE TABLE `vaccine` (
 --
 
 INSERT INTO `vaccine` (`id`, `id_patient`, `date`, `type`, `vaccine`) VALUES
-(3, 2, '1971-06-10', 'Id aperiam natus mod', 'Tenetur quo eum eum '),
-(4, 2, '2000-03-03', 'COVID-19 ARNm', 'Pfizer-BioNTech COVID-19 Vaccine');
+(6, 55, '2022-01-03', 'COVID-19 ARNm', 'Pfizer-BioNTech COVID-19 Vaccine');
 
 --
 -- Index pour les tables déchargées
@@ -257,7 +236,8 @@ ALTER TABLE `attachement`
 -- Index pour la table `biometry`
 --
 ALTER TABLE `biometry`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_patient` (`id_patient`);
 
 --
 -- Index pour la table `diseases`
@@ -293,43 +273,43 @@ ALTER TABLE `vaccine`
 -- AUTO_INCREMENT pour la table `allergy`
 --
 ALTER TABLE `allergy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `attachement`
 --
 ALTER TABLE `attachement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `biometry`
 --
 ALTER TABLE `biometry`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `diseases`
 --
 ALTER TABLE `diseases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT pour la table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT pour la table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT pour la table `vaccine`
 --
 ALTER TABLE `vaccine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées
@@ -346,6 +326,12 @@ ALTER TABLE `allergy`
 --
 ALTER TABLE `attachement`
   ADD CONSTRAINT `attachement_ibfk_1` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `biometry`
+--
+ALTER TABLE `biometry`
+  ADD CONSTRAINT `biometry_ibfk_1` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id`);
 
 --
 -- Contraintes pour la table `diseases`
