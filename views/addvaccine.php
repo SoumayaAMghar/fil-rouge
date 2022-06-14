@@ -75,40 +75,35 @@ $patient_id = $_POST['patient_id'];
         </div>
       </header>
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-        <div class="container mx-auto px-6 py-8">
-          
-          
+        <div class="container mx-auto px-6 py-8">               
           <div class="flex justify-center items-center w-full ">
-                                <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
-                                    <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">ADD Vaccine</h1>
-                                    <form method="post">
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="date">Date</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="date" name="date" id="date" required>
-
-                                        </div>
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="type">Type</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="type" id="type" required>
-                                        </div>
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="vaccine">Vaccine</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="vaccine" id="vaccine" required>
-                                        </div>
-                                                                                
-                                        <div class="pt-4 flex items-center justify-center">
-                                            <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>displaVaccine">
-                                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                </svg> Cancel
-                                            </a>
-                                            <button type="submit" name="submit" class="bg-indigo-500 w-40 text-white px-4 py-3 rounded-md focus:outline-none">SAVE</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-
+            <div class="w-11/12 md:w-3/4 sm-3/4 lg:w-1/2 bg-white rounded shadow-2xl p-8 m-4">
+                <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">ADD Vaccine</h1>
+                <form method="post">
+                    <div class="flex flex-col mb-4">
+                        <label class="mb-2 font-bold text-lg text-gray-900" for="date">Date</label>
+                        <input class="border py-2 px-3 text-grey-800" type="date" name="date" id="date" required>
+                    </div>
+                    <div class="flex flex-col mb-4">
+                        <label class="mb-2 font-bold text-lg text-gray-900" for="type">Type</label>
+                        <input class="border py-2 px-3 text-grey-800" type="text" name="type" id="type" required>
+                    </div>
+                    <div class="flex flex-col mb-4">
+                        <label class="mb-2 font-bold text-lg text-gray-900" for="vaccine">Vaccine</label>
+                        <input class="border py-2 px-3 text-grey-800" type="text" name="vaccine" id="vaccine" required>
+                    </div>
+                                                            
+                    <div class="pt-4 flex items-center justify-center">
+                        <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>displaVaccine">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg> Cancel
+                        </a>
+                        <button type="submit" name="submit" class="bg-indigo-500 w-40 text-white px-4 py-3 rounded-md focus:outline-none">SAVE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         </div>
       </main>
     </div>

@@ -20,8 +20,15 @@ class Doctor{
         }
     }
     static public function createDoctor($data){
+        $stmt = DB::connect()->prepare('SELECT * FROM doctors WHERE patente=:patente');
+        $stmt->bindParam(':patente',$data['patente']);
+        $stmt->execute();
+        $doctors =$stmt->fetchAll();
+        // print_r($data);
+        // die;
+       if(empty($doctors)){
         try{
-        $stmt = DB::connect()->prepare('INSERT INTO doctors (firstname,lastname,speciality,phone,email,password,patente) VALUES (:firstname,:lastname,:speciality,:phone,:email,:password,:patente)');
+        $stmt = DB::connect()->prepare('INSERT INTO doctors (firstname,lastname,speciality,phone,email,`password`,patente) VALUES (:firstname,:lastname,:speciality,:phone,:email,:password,:patente)');
         $stmt->bindParam(':firstname',$data['firstname']);
         $stmt->bindParam(':lastname',$data['lastname']);
         $stmt->bindParam(':speciality',$data['speciality']);
@@ -36,7 +43,10 @@ class Doctor{
             return '<div style="background-color : #ff3851;"><h4 style="color:red;">Patente Does Not Exist Choose an other One </h4></div>';
         }
 
-        $stmt = null;
+        // $stmt = null;
+    }else{
+            return 'Patente already exist';
+        }
     }
     static public function getAllpend()
     {

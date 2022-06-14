@@ -74,7 +74,7 @@ $patient_id = $_POST['patient_id'];
           
           
           <div class="flex justify-center items-center w-full ">
-                                <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
+                                <div class="w-11/12 md:w-3/4 sm-3/4 lg:w-1/2 bg-white rounded shadow-2xl p-8 m-4">
                                     <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">ADD ALLERGY</h1>
                                     <form method="post">
                                         <div class="flex flex-col mb-4">

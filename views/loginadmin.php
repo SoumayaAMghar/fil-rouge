@@ -18,12 +18,12 @@ if (isset($_POST['submit'])){
             <p class="text-white font-medium text-center text-lg font-bold">LOGIN</p>
               <div class="">
                 <label class="block text-md font-regular text-white" for="email">E-mail</label>
-                <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-black" type="email" id="email"  placeholder="Digite o e-mail" aria-label="email" required>
+                <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-black" name="email" type="email" id="email"  placeholder="Digite o e-mail" aria-label="email" required>
               </div>
               <div class="mt-2">
                 <label class="block  text-md font-regular text-white">Password</label>
                  <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-black"
-                  type="password" id="password" placeholder="Digite a sua senha" arial-label="password" required>
+                  name="password" type="password" id="password" placeholder="Digite a sua senha" arial-label="password" required>
               </div>
 
               <div class="mt-4 items-center flex justify-center w-full">

@@ -43,7 +43,7 @@ class PatientsController
             $data = array(
                 'firstname' => $_POST['firstname'],
                 'lastname' => $_POST['lastname'],
-                'birthday' => $_POST['birthday'],
+                'gender' => $_POST['gender'],
                 'cin' => $_POST['cin'],
                 'phone' => $_POST['phone'],
                 // 'blood_group' => $_POST['blood_group'],
@@ -77,7 +77,7 @@ class PatientsController
                 'id' => $_POST['id'],
                 'firstname' => $_POST['firstname'],
                 'lastname' => $_POST['lastname'],
-                'birthday' => $_POST['birthday'],
+                'gender' => $_POST['gender'],
                 'cin' => $_POST['cin'],
                 'phone' => $_POST['phone'],
                 // 'blood_group' => $_POST['blood_group'],

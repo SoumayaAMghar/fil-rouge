@@ -58,15 +58,12 @@ if (isset($_POST['submit'])) {
             </svg>
           </button>
         </div>
-
         <div class="flex items-center">
           <div x-data="{ dropdownOpen: false }" class="relative">
             <a href="<?php echo BASE_URL; ?>logout" title="Déconnexion" class="mr-2 mb-2 text-black">
               <i class="fa fa-power-off"></i> Logout
             </a>
-
             <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
-
             <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10" style="display: none;">
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Products</a>
@@ -77,10 +74,8 @@ if (isset($_POST['submit'])) {
       </header>
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
         <div class="container mx-auto px-6 py-8">
-
-
           <div class="flex justify-center items-center w-full ">
-            <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
+            <div class="w-11/12 md:w-3/4 sm-3/4 lg:w-1/2 bg-white rounded shadow-2xl p-8 m-4">
               <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">Edit Allergy</h1>
               <form method="post">
                 <div class="flex flex-col mb-4">

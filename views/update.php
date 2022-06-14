@@ -68,17 +68,24 @@ if (isset($_POST['submit'])) {
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
         <div class="container mx-auto px-6 py-8">          
         <div class="flex justify-center items-center w-full ">
-          <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
+          <div class="w-11/12 md:w-3/4 sm-3/4 lg:w-1/2  bg-white rounded shadow-2xl p-8 m-4">
               <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">Edit a Patient</h1>
               <form method="post">
                   <div class="flex flex-col mb-4">
-                      <label class="mb-2 font-bold text-lg text-gray-900" for="firstname">First Name</label>
+                      <label class="mb-2 font-bold text-lg text-gray-900" for="firstname">Firstname</label>
                       <input class="border py-2 px-3 text-grey-800" type="text" name="firstname" id="firstname" value="<?php echo $patient->firstname; ?>" required>
                       <input type="hidden" name="id" value="<?php echo $patient->id; ?>">
                   </div>
                   <div class="flex flex-col mb-4">
-                      <label class="mb-2 font-bold text-lg text-gray-900" for="lastname">Last Name</label>
+                      <label class="mb-2 font-bold text-lg text-gray-900" for="lastname">Lastname</label>
                       <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname" value="<?php echo $patient->lastname; ?>" required>
+                  </div>
+                  <div class="flex flex-col mb-4">
+                      <label class="mb-2 font-bold text-lg text-gray-900" for="gender">Gender</label>
+                      <select class="border py-2 px-3 text-grey-800" name="gender" value="<?php echo $patient->gender; ?>" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
                   </div>
                   <div class="flex flex-col mb-4">
                       <label class="mb-2 font-bold text-lg text-gray-900" for="cin">CIN</label>

@@ -72,53 +72,47 @@ if (isset($_POST['submit'])) {
         <div class="container mx-auto px-6 py-8">
           
           
-          <div class="flex justify-center items-center w-full ">
-                                <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
-                                    <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">ADD Patient</h1>
-                                    <form method="post">
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="firstname">Firstname</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="firstname" id="firstname">
+          <div class="flex justify-center w-full ">
+            <div class="w-11/12 md:w-3/4 sm-3/4 lg:w-1/2 bg-white rounded shadow-2xl p-8 m-4">
+                <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">ADD Patient</h1>
+                <form method="post">
+                    <div class="flex flex-col mb-4">
+                        <label class="mb-2 font-bold text-lg text-gray-900" for="firstname">Firstname</label>
+                        <input class="border py-2 px-3 text-grey-800" type="text" name="firstname" id="firstname" required>
 
-                                        </div>
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="lastname">Lastname</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname">
-                                        </div>
-                                        <div class="flex justify-between">
-                                        <div class="flex flex-col mb-4 w-64">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="gender">Gender</label>
-                                            <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="gender" id="gender" > -->
-                                            <select class="border py-2 px-3 text-grey-800" name="gender">
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                            </select>
-                                        </div>
-                                        <div class="flex flex-col mb-4 w-64">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="cin">CIN</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin">
-                                        </div>
-                                      </div>
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="phone">Phone</label>
-                                            <input class="border py-2 text-grey-800" type="text" name="phone" id="phone">
-                                        </div>
-                                        <div class="flex flex-col mb-4">
-                                            <label class="mb-2 font-bold text-lg text-gray-900" for="birthday">Birthday</label>
-                                            <input class="border py-2 px-3 text-grey-800" type="date" name="birthday" id="birthday">
-                                        </div>
+                    </div>
+                    <div class="flex flex-col mb-4">
+                        <label class="mb-2 font-bold text-lg text-gray-900" for="lastname">Lastname</label>
+                        <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname" required>
+                    </div>
+                    <div class="flex flex-col mb-4">
+                        <label class="mb-2 font-bold text-lg text-gray-900" for="gender">Gender</label>
+                        <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="gender" id="gender" > -->
+                        <select class="border py-2 px-3 text-grey-800" name="gender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col mb-4">
+                        <label class="mb-2 font-bold text-lg text-gray-900" for="cin">CIN</label>
+                        <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin" required>
+                    </div>
+                    <div class="flex flex-col mb-4">
+                        <label class="mb-2 font-bold text-lg text-gray-900" for="phone">Phone</label>
+                        <input class="border py-2 text-grey-800" type="text" name="phone" id="phone" required>
+                    </div>
 
-                                        <div class="pt-4 flex items-center justify-center">
-                                            <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>homeuser">
-                                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                </svg> Cancel
-                                            </a>
-                                            <button type="submit" name="submit" class="bg-indigo-500 w-40 text-white px-4 py-3 rounded-md focus:outline-none">SAVE</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                    <div class="pt-4 flex items-center justify-center">
+                        <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>homeuser">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg> Cancel
+                        </a>
+                        <button type="submit" name="submit" class="bg-indigo-500 w-40 text-white px-4 py-3 rounded-md focus:outline-none">SAVE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
 
         </div>

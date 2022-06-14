@@ -1,5 +1,10 @@
 {
   "devDependencies": {
     "tailwindcss": "^3.0.24"
+  },
+  "dependencies": {
+    "alpinejs": "^3.10.2",
+    "daisyui": "^2.15.2",
+    "sweetalert": "^2.1.2"
   }
 }

@@ -6,7 +6,8 @@ class AdminController{
     {
         if(isset($_POST['submit']))
         {
-            // var_dump($_POST);
+            // echo '<pre>';
+            // print_r($_POST);
             // die;
             $data['email'] = $_POST['email'];
             $result = Admin::login($data);

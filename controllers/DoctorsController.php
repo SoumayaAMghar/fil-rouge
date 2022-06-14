@@ -42,6 +42,7 @@ class DoctorsController
                 Redirect::to('rejected');
             } else {
                 Session::set('error', 'Patente or password is not correct');
+                // echo"<script>alert('Patente or password is not correct')</script>";
                 Redirect::to('login');
             }
         }
