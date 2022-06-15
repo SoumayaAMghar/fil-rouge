@@ -1,9 +1,9 @@
 <?php
+
 if (isset($_POST['submit'])) {
     $newPatient = new PatientsController();
     $newPatient->addPatient();
 }
-
 ?>
 
 

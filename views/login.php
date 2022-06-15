@@ -3,7 +3,11 @@
 if (isset($_POST['submit'])) {
     $loginDoctor = new DoctorsController();
     $loginDoctor->auth();
+    
+    
 }
+// $data = new DoctorsController();
+// $doctors = $data->getAlldoctors();
 
 ?>
 
@@ -24,11 +28,16 @@ if (isset($_POST['submit'])) {
                 <h1 class="text-2xl lg:text-3xl  font-bold text-left tracking-wide text-center ">The Shared Medical Record</h1>
                 <p class="text-l lg:text-xl my-4 text-center ">is now available for everyone - Théragora.</p>
             </div>
-
-                <form method="post" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto" data-netlify="true">
+            <form method="post" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+                    <!-- <?php foreach ($doctors as $doctor) : ?>    
+                        <input type="hidden" name="id" value="<?php echo $doctor['id']; ?>">
+                    <?php endforeach; ?> -->
+                
                     <div class="pb-2 pt-4">
                         <input  type="text" name="patente" placeholder="Patente" class="block w-full p-4 text-lg rounded-sm bg-white shadow-md">
+                       
                     </div>
+                
                     <!-- <div class="pb-2 pt-4">
                         <input type="password" name="password" placeholder="password" class="block w-full p-4 text-lg rounded-sm bg-white shadow-md">
                     </div> -->

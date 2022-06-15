@@ -16,9 +16,11 @@ class VaccinesController{
         if(isset($_POST['submit'])){
             $data = array(
                 'date' => $_POST['date'],
+                'doctor_name' => $_SESSION['lastname'],
                 'type' => $_POST['type'],
                 'vaccine' => $_POST['vaccine'],
                 'id_patient' =>$_SESSION['id_patient'],
+                'id_doctor' =>$_SESSION['id'],
             );
             $result = Vaccine::add($data);
             if($result === 'ok'){

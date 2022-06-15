@@ -12,10 +12,12 @@ class AttachementsController {
         if(isset($_POST['submit'])){
             $data = array(
                 'date' => $_POST['date'],
+                'doctor_name' =>$_SESSION['lastname'],
                 'type' => $_POST['type'],
                 'titre' => $_POST['titre'],
                 'attachement' => $_FILES['attachement']['name'],
                 'id_patient' =>$_SESSION['id_patient'],
+                'id_doctor' =>$_SESSION['id'],
             );
             // print_r($_FILES);
             $result = Attachement::add($data);

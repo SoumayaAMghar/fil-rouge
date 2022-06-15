@@ -100,7 +100,8 @@ if (isset($_POST['id_patient'])) {
                     <tr>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Date</th>
-
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                        Doctor</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Type</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -120,6 +121,9 @@ if (isset($_POST['id_patient'])) {
                           <?php echo $attachement['date']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <?php echo $attachement['doctor_name']; ?>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $attachement['type']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -135,19 +139,19 @@ if (isset($_POST['id_patient'])) {
                         </td>
 
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-
+                        <?php if($_SESSION['id'] == $attachement['id_doctor']) :?>
                           <div class="flex space-between">
                             <form method="post" class="mr-1" action="updateAttachement">
                               <input type="hidden" name="id" value="<?php echo $attachement['id']; ?>">
                               <button class="text-emerald-400"><i class="fa fa-edit"></i></button>
                             </form>
-                            <form method="post" class="mr-1" action="deleteattachement">
+                            <form method="post" class="mr-1" action="deleteattachement" onsubmit=" return deleteRow(this)">
                               <input type="hidden" name="id" value="<?php echo $attachement['id']; ?>">
-                              <button class="text-red-700"><i class="fa fa-trash"></i></button>
+                              <button type="submit" class="text-red-700"><i class="fa fa-trash"></i></button>
                             </form>
                           </div>
+                          <?php endif; ?>
                         </td>
-
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
@@ -161,3 +165,23 @@ if (isset($_POST['id_patient'])) {
     </div>
   </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+ function deleteRow(form) {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this Attachement!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          form.submit();
+        }
+      });
+      return false;
+  }
+</script>

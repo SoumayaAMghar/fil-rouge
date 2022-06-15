@@ -1,4 +1,6 @@
 <?php
+
+
 if (isset($_POST['find'])) {
   $data = new PatientsController();
   $patients = $data->findPatients();
@@ -15,7 +17,6 @@ $nbrMales = $data->getNbrOfMales();
 
 $data = new PatientsController();
 $nbrFemales = $data->getNbrOfFemales();
-
 
 ?>
 
@@ -43,12 +44,13 @@ $nbrFemales = $data->getNbrOfFemales();
           </svg>
           <span class="mx-3">Dashboard</span>
         </a>
-
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?= BASE_URL ?>addPatient">
-
+        <form method="post" action="addPatient">               
+        <button type="submit" class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" >
           <i class=" text-whit fa fa-plus"></i>
           <span class="mx-3">Add Patient</span>
-        </a>
+        </button>
+        
+        </form>
       </nav>
     </div>
     <div class="flex-1 flex flex-col overflow-hidden">
@@ -157,15 +159,15 @@ $nbrFemales = $data->getNbrOfFemales();
                 <table class="min-w-full">
                   <thead class="bg-blue-400">
                     <tr>
-                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th class="  text-center px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Name</th>
-                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="text-center px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         CIN</th>
-                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th class="text-center px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                       Gender</th>
-                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th class="text-center px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Phone</th>
-                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th class="text-center px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Actions</th>
                     </tr>
                   </thead>
@@ -173,28 +175,29 @@ $nbrFemales = $data->getNbrOfFemales();
                   <tbody class="bg-white">
                     <?php foreach ($patients as $patient) : ?>
                       <tr>
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $patient['firstname'] . " " . $patient['lastname']; ?>
                         </td>
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $patient['cin']; ?>
                         </td>
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <td class=" text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $patient['gender']; ?>
                         </td>
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <td class=" text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $patient['phone']; ?>
                         </td>
 
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <div class="flex space-x-1">
+                        <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="flex  justify-center space-x-1">
                             <div>
                               <form method="post" class="mr-1" action="displayPatient" data-netlify="true">
                                 <input type="hidden" name="id" value="<?php echo $patient['id']; ?>">
                                 <button class="text-blue-700"><i class="fas fa-eye"></i></button>
                               </form>
                             </div>
-                            <div>
+                            <?php if($_SESSION['id'] == $patient['id_doctor']) :?>
+                              <div >
                               <form method="post" class="mr-1" action="update" data-netlify="true">
                                 <input type="hidden" name="id" value="<?php echo $patient['id']; ?>">
                                 <button class="text-emerald-400"><i class="fa fa-edit"></i></button>
@@ -208,6 +211,7 @@ $nbrFemales = $data->getNbrOfFemales();
                                 <button type="submit" class="text-red-700"><i  class="fa fa-trash"></i></button>
                               </form>
                             </div>
+                            <?php endif; ?>
                           </div>
                         </td>
 

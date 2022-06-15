@@ -2,7 +2,7 @@ Options All -indexes
 
 RewriteEngine On
 
-RewriteBase /fil-rouge/
+RewriteBase /copie/
 
 RewriteRule ^([-a-zA-Z0-9]+)$ index.php?page=$1
 

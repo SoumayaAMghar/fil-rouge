@@ -24,9 +24,11 @@ class DiseasesController {
         if(isset($_POST['submit'])){
             $data = array(
                 'date' => $_POST['date'],
+                'doctor_name' =>$_SESSION['lastname'],
                 'disease' => $_POST['disease'],
                 'status' => $_POST['status'],
                 'id_patient' =>$_SESSION['id_patient'],
+                'id_doctor' =>$_SESSION['id'],
             );
             $result = Disease::add($data);
             if($result === 'ok'){

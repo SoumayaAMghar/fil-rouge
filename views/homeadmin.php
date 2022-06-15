@@ -261,13 +261,11 @@ if(isset($_POST['deletedoctor'])){
                                 <input type="hidden" value="<?php echo $doctor['id']; ?>" class="idDoctor" name="id">                          
                                   <button name="reject" class="rejected  w-11 h-11" > <i class="text-red-500 fas fa-user-alt-slash "></i> </button>
                               </form>
-                   
-                              <form method="post" class="mr-1" >
-                                <input type="hidden" name="id" value="<?php echo $doctor['id']; ?>">
-                                <button name="deletedoctor"><i class=" deleteclass mt-4 text-indigo-700 fa fa-trash"></i></button>
-                              </form>
+                              <form method="post" class="mr-1" action="deleteDoctor" onsubmit=" return deleteRow(this)">
+                              <input type="hidden" name="id" value="<?php echo $doctor['id']; ?>">
+                              <button type="submit" class="text-red-700"><i class="deleteclass mt-4 text-indigo-700 fa fa-trash"></i></button>
+                            </form>
                             </div>
-
                           </div>
                         </td>
 
@@ -284,53 +282,23 @@ if(isset($_POST['deletedoctor'])){
   </div>
 </div>
 
-<!-- <script>
-  let accepted = document.querySelectorAll('.accepted');
-  let rejected = document.querySelectorAll('.rejected');
-  let status = document.querySelector('.status');
-  let idDoctor = document.querySelector('.idDoctor');
-  accepted.forEach((e) => {
-    e.addEventListener('click', function() {
-     
-      status.value = 'accepted';
-      idDoctor.value = e.value;
-    })
-
-  })
-  rejected.forEach((e) => {
-    e.addEventListener('click', function() {
-      status.value = 'rejected';
-      idDoctor.value = e.value;
-    })
-
-  })
-</script> -->
-
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
 
-$(document).ready(function()
-  {
-  $('.deleteclass').click(function(e)
-    {
-      e.preventDefault();
-      var id = $(this).val();
-      swal({
+
+<script>
+ function deleteRow(form) {
+    swal({
         title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this imaginary file!",
+        text: "Once deleted, you will not be able to recover this Docotor!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
       })
       .then((willDelete) => {
         if (willDelete) {
-          
-          $.ajax({})
-
-        } else {
-          swal("Your imaginary file is safe!");
+          form.submit();
         }
-       });
-    });
-  });
+      });
+      return false;
+  }
 </script>

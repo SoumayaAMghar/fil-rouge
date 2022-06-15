@@ -11,14 +11,15 @@ class Biometry{
     }
 
     static public function add($data){
-        $stmt = DB::connect()->prepare('INSERT INTO biometry (date,age,weight,height,blood_group,id_patient) VALUES (:date,:age,:weight,:height,:blood_group,:id_patient);');
+        $stmt = DB::connect()->prepare('INSERT INTO biometry (date,doctor_name,age,weight,height,blood_group,id_patient,id_doctor) VALUES (:date,:doctor_name,:age,:weight,:height,:blood_group,:id_patient,:id_doctor);');
         $stmt->bindParam(':date',$data['date']);
+        $stmt->bindParam(':doctor_name',$data['doctor_name']);
         $stmt->bindParam(':age',$data['age']);
         $stmt->bindParam(':weight',$data['weight']);
         $stmt->bindParam(':height',$data['height']);
         $stmt->bindParam(':blood_group',$data['blood_group']);
         $stmt->bindParam(':id_patient',$data['id_patient']);
-        
+        $stmt->bindParam(':id_doctor',$data['id_doctor']);
         if($stmt->execute()){
             return 'ok';
         }else{

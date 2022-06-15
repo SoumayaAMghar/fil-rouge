@@ -51,14 +51,16 @@ class Patient{
         $stmt->bindParam(':cin',$data['cin']);
         $stmt->execute();
         $patients =$stmt->fetchAll();
+
        if(empty($patients)){
-        $stmt = DB::connect()->prepare('INSERT INTO patients (firstname,lastname,gender,cin,phone) VALUES (:firstname,:lastname,:gender,:cin,:phone)');
+
+        $stmt = DB::connect()->prepare('INSERT INTO patients (firstname,lastname,gender,cin,phone,id_doctor) VALUES (:firstname,:lastname,:gender,:cin,:phone,:id_doctor)');
         $stmt->bindParam(':firstname',$data['firstname']);
         $stmt->bindParam(':lastname',$data['lastname']);
         $stmt->bindParam(':gender',$data['gender']);
         $stmt->bindParam(':cin',$data['cin']);
         $stmt->bindParam(':phone',$data['phone']);
-        // $stmt->bindParam(':blood_group',$data['blood_group']);
+        $stmt->bindParam(':id_doctor',$data['id_doctor']);
 
         if($stmt->execute()){
             return 'ok';

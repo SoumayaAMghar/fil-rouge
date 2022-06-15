@@ -2,6 +2,9 @@
 if(isset($_POST['submit'])){
     $newVaccine= new VaccinesController();
     $newVaccine->add();
+    // echo'<pre>';
+    // print_r($_SESSION);
+    // die;
 }   
 if(isset($_POST['patient_id'])){
  $data = new PatientsController();
@@ -84,6 +87,10 @@ $patient_id = $_POST['patient_id'];
                         <label class="mb-2 font-bold text-lg text-gray-900" for="date">Date</label>
                         <input class="border py-2 px-3 text-grey-800" type="date" name="date" id="date" required>
                     </div>
+                    <!-- <div class="flex flex-col mb-4">
+                        <label class="mb-2 font-bold text-lg text-gray-900" for="doctor_name">Doctor </label>
+                        <input class="border py-2 px-3 text-grey-800" type="hidden" name="doctor_name" id="doctor_name" required>
+                    </div> -->
                     <div class="flex flex-col mb-4">
                         <label class="mb-2 font-bold text-lg text-gray-900" for="type">Type</label>
                         <input class="border py-2 px-3 text-grey-800" type="text" name="type" id="type" required>

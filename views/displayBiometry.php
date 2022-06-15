@@ -52,7 +52,7 @@ if (isset($_POST['id_patient'])) {
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
-          </button>         
+          </button>
         </div>
 
         <div class="flex items-center">
@@ -97,8 +97,10 @@ if (isset($_POST['id_patient'])) {
                 <table class="min-w-full">
                   <thead class="bg-blue-400">
                     <tr>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Date</th>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                        Doctor</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Age</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -116,8 +118,11 @@ if (isset($_POST['id_patient'])) {
                     <?php foreach ($biometries as $biometry) : ?>
 
                       <tr>
-                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $biometry['date']; ?>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <?php echo $biometry['doctor_name']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $biometry['age']; ?>
@@ -132,19 +137,20 @@ if (isset($_POST['id_patient'])) {
                           <?php echo $biometry['blood_group']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <?php if($_SESSION['id'] == $biometry['id_doctor']) :?>
                           <div class="flex space-between">
                             <form method="post" class="mr-1" action="updateBiometry " data-netlify="true">
                               <input type="hidden" name="id" value="<?php echo $biometry['id']; ?>">
                               <button class="text-emerald-400"><i class="fa fa-edit"></i></button>
                             </form>
-                            <form method="post" class="mr-1" action="deletebiometry">
+                            <form method="post" class="mr-1" action="deletebiometry" onsubmit=" return deleteRow(this)">
                               <input type="hidden" name="id" value="<?php echo $biometry['id']; ?>">
-                              <button class="text-red-700"><i class="fa fa-trash"></i></button>
+                              <button type="submit" class="text-red-700"><i class="fa fa-trash"></i></button>
                             </form>
                           </div>
-              </div>
-              </td>
-
+                          <?php endif; ?>
+                    </div>
+                    </td>
               </tr>
             <?php endforeach; ?>
             </tbody>
@@ -158,3 +164,23 @@ if (isset($_POST['id_patient'])) {
   </div>
 </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+  function deleteRow(form) {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this Attachement!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          form.submit();
+        }
+      });
+    return false;
+  }
+</script>

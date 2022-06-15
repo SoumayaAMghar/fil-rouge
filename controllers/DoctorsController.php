@@ -2,6 +2,14 @@
 
 class DoctorsController
 {
+    public function getOneDoctor()
+    {
+        
+            $data = array('id' =>$_SESSION['id']);
+            $doctor = Doctor::getdoctor($data);
+            return $doctor;
+        
+    }
     public function auth()
     {
         if (isset($_POST['submit'])) {
@@ -15,9 +23,13 @@ class DoctorsController
             // die;
 
             if ($result->patente == $_POST['patente'] && password_verify($_POST['password'], $result->password) && $result->status == 'accepted') {
+                // echo '<pre>';
+                // print_r($result);
+                // die;
                 $_SESSION['login'] = true;
                 $_SESSION['loginadmin'] = false;
                 $_SESSION['patente'] = $result->patente;
+                $_SESSION['lastname'] = $result->lastname;
                 $_SESSION['status'] = $result->status;
                 $_SESSION['id'] = $result->id;
 
@@ -29,6 +41,7 @@ class DoctorsController
                 $_SESSION['login'] = true;
                 $_SESSION['loginadmin'] = false;
                 $_SESSION['patente'] = $result->patente;
+                $_SESSION['lastname'] = $result->lastname;
                 $_SESSION['status'] = $result->status;
                 $_SESSION['id'] = $result->id;
                 Redirect::to('pending');
@@ -36,6 +49,7 @@ class DoctorsController
                 $_SESSION['login'] = true;
                 $_SESSION['loginadmin'] = false;
                 $_SESSION['patente'] = $result->patente;
+                $_SESSION['lastname'] = $result->lastname;
                 $_SESSION['status'] = $result->status;
                 $_SESSION['id'] = $result->id;
 
@@ -142,8 +156,9 @@ class DoctorsController
             $result = Doctor::delete($data);
             if ($result === 'ok') {
                 // Session::set('success', 'Doctor Supprimé');
-                // Redirect::to('homeuser');
-                header('refresh:0', 'Location: ' . $_SERVER['HTTP_REFERER']);
+                Redirect::to('homeadmin');
+                // header('refresh:0', 'Location: ' . $_SERVER['HTTP_REFERER']);
+
             } else {
                 echo $result;
             }

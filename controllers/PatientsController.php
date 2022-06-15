@@ -39,6 +39,8 @@ class PatientsController
 
     public function addPatient()
     {
+        // print_r($_POST);
+        // die;
         if (isset($_POST['submit'])) {
             $data = array(
                 'firstname' => $_POST['firstname'],
@@ -46,7 +48,7 @@ class PatientsController
                 'gender' => $_POST['gender'],
                 'cin' => $_POST['cin'],
                 'phone' => $_POST['phone'],
-                // 'blood_group' => $_POST['blood_group'],
+                'id_doctor' =>$_SESSION['id']
             );
             $result = Patient::add($data);
             if ($result === 'ok') {

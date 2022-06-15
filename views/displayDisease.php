@@ -138,6 +138,9 @@ $patient = $data->getOnePatient();
                         Date
                       </th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                        Doctor
+                      </th>
+                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Disease</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Status</th>
@@ -152,6 +155,9 @@ $patient = $data->getOnePatient();
                           <?php echo $disease['date']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <?php echo $disease['doctor_name']; ?>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $disease['disease']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -159,16 +165,18 @@ $patient = $data->getOnePatient();
                             <?php echo $disease['status']; ?></span>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <?php if($_SESSION['id'] == $disease['id_doctor']) :?>
                           <div class="flex space-between">
                               <form method="post" class="mr-1" action="updateDisease" data-netlify="true">
                                 <input type="hidden" name="id" value="<?php echo $disease['id']; ?>">
                                 <button class="text-emerald-400"><i class="fa fa-edit"></i></button>
                               </form>
-                              <form method="post" class="ml-1" action="deletedisease">
-                                <input type="hidden" name="id" value="<?php echo $disease['id']; ?>">
-                                <button class=""><i class="text-red-600 fa fa-trash"></i></button>
-                              </form>
+                              <form method="post" class="mr-1" action="deletedisease" onsubmit=" return deleteRow(this)">
+                              <input type="hidden" name="id" value="<?php echo $disease['id']; ?>">
+                              <button type="submit" class="text-red-700"><i class="fa fa-trash"></i></button>
+                            </form>
                             </div>
+                          <?php endif; ?>
                         </td>
                       </tr>
                     <?php endforeach; ?>
@@ -182,3 +190,23 @@ $patient = $data->getOnePatient();
     </div>
   </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+ function deleteRow(form) {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this Attachement!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          form.submit();
+        }
+      });
+      return false;
+  }
+</script>

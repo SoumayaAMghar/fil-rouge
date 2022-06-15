@@ -11,12 +11,13 @@ class Vaccine{
     }
 
     static public function add($data){
-        $stmt = DB::connect()->prepare('INSERT INTO vaccine (date,type,vaccine,id_patient) VALUES (:date,:type,:vaccine,:id_patient);');
+        $stmt = DB::connect()->prepare('INSERT INTO vaccine (date,doctor_name,type,vaccine,id_patient,id_doctor) VALUES (:date,:doctor_name,:type,:vaccine,:id_patient,:id_doctor);');
         $stmt->bindParam(':date',$data['date']);
+        $stmt->bindParam(':doctor_name',$data['doctor_name']);
         $stmt->bindParam(':type',$data['type']);
         $stmt->bindParam(':vaccine',$data['vaccine']);
         $stmt->bindParam(':id_patient',$data['id_patient']);
-        
+        $stmt->bindParam(':id_doctor',$data['id_doctor']);
         if($stmt->execute()){
             return 'ok';
         }else{

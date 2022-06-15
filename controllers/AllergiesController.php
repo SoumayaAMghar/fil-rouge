@@ -16,10 +16,12 @@ class AllergiesController{
         if(isset($_POST['submit'])){
             $data = array(
                 'date' => $_POST['date'],
+                'doctor_name' =>$_SESSION['lastname'],
                 'allergy' => $_POST['allergy'],
                 'diagnostic_method' => $_POST['diagnostic'],
                 'treatment' => $_POST['treatment'],
                 'id_patient' =>$_SESSION['id_patient'],
+                'id_doctor' =>$_SESSION['id'],
             );
             $result = Allergie::add($data);
             if($result === 'ok'){

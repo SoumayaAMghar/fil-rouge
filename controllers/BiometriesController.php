@@ -16,11 +16,13 @@ class BiometriesController{
         if(isset($_POST['submit'])){
             $data = array(
                 'date' => $_POST['date'],
+                'doctor_name' =>$_SESSION['lastname'],
                 'age' => $_POST['age'],
                 'weight' => $_POST['weight'],
                 'height' => $_POST['height'],
                 'blood_group' => $_POST['blood_group'],
                 'id_patient' =>$_SESSION['id_patient'],
+                'id_doctor' =>$_SESSION['id'],
             );
             $result = Biometry::add($data);
             if($result === 'ok'){

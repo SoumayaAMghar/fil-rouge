@@ -11,12 +11,14 @@ class Allergie{
     }
 
     static public function add($data){
-        $stmt = DB::connect()->prepare('INSERT INTO allergy (date,allergy,diagnostic_method,treatment,id_patient) VALUES (:date,:allergy,:diagnostic,:treatment,:id_patient);');
+        $stmt = DB::connect()->prepare('INSERT INTO allergy (date,doctor_name,allergy,diagnostic_method,treatment,id_patient,id_doctor) VALUES (:date,:doctor_name,:allergy,:diagnostic,:treatment,:id_patient,:id_doctor);');
         $stmt->bindParam(':date',$data['date']);
+        $stmt->bindParam(':doctor_name',$data['doctor_name']);
         $stmt->bindParam(':allergy',$data['allergy']);
         $stmt->bindParam(':diagnostic',$data['diagnostic_method']);
         $stmt->bindParam(':treatment',$data['treatment']);
         $stmt->bindParam(':id_patient',$data['id_patient']);
+        $stmt->bindParam(':id_doctor',$data['id_doctor']);
         
         if($stmt->execute()){
             return 'ok';

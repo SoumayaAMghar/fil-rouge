@@ -23,12 +23,13 @@ class Disease{
         }
     }
     static public function add($data){
-        $stmt = DB::connect()->prepare('INSERT INTO diseases (date,disease,status,id_patient) VALUES (:date,:disease,:status,:id_patient);');
+        $stmt = DB::connect()->prepare('INSERT INTO diseases (date,doctor_name,disease,status,id_patient,id_doctor) VALUES (:date,:doctor_name,:disease,:status,:id_patient,:id_doctor);');
         $stmt->bindParam(':date',$data['date']);
+        $stmt->bindParam(':doctor_name',$data['doctor_name']);
         $stmt->bindParam(':disease',$data['disease']);
         $stmt->bindParam(':status',$data['status']);
         $stmt->bindParam(':id_patient',$data['id_patient']);
-        
+        $stmt->bindParam(':id_doctor',$data['id_doctor']);
         if($stmt->execute()){
             return 'ok';
         }else{

@@ -23,13 +23,14 @@ class Attachement
             if (move_uploaded_file($_FILES['attachement']['tmp_name'], 'views/includes/images/'.$file))
             {
 
-            $stmt = DB::connect()->prepare('INSERT INTO attachement (date,type,titre,id_patient,attachement) VALUES (:date,:type,:titre,:id_patient,:attachement);');
+            $stmt = DB::connect()->prepare('INSERT INTO attachement (date,doctor_name,type,titre,id_patient,attachement,id_doctor) VALUES (:date,:doctor_name,:type,:titre,:id_patient,:attachement,:id_doctor);');
             $stmt->bindParam(':date', $data['date']);
+            $stmt->bindParam(':doctor_name', $data['doctor_name']);
             $stmt->bindParam(':type', $data['type']);
             $stmt->bindParam(':titre', $data['titre']);
             $stmt->bindParam(':attachement', $file);
             $stmt->bindParam(':id_patient', $data['id_patient']);
-
+            $stmt->bindParam(':id_doctor',$data['id_doctor']);
             if ($stmt->execute()) {
                 return 'ok';
             } else {

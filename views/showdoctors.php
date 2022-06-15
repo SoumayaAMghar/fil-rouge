@@ -36,12 +36,6 @@ $data = new DoctorsController();
 $nbrAccepted = $data->getNbrOfAccepted();
 
 
-  
-    if(isset($_POST['deletedoctor'])){
-        $existDoctor= new DoctorsController();
-        $existDoctor->deleteDoctor();
-    }
-
 ?>
 
 
@@ -203,10 +197,9 @@ $nbrAccepted = $data->getNbrOfAccepted();
                               <input type="hidden" value="<?php echo $doctor['id']; ?>" class="idDoctor" name="id">
                               <button name="reject" class="rejected  w-11 h-11"> <i class="text-red-500 fas fa-user-alt-slash "></i> </button>
                             </form>
-
-                            <form method="post" class="mr-1">
+                            <form method="post" class="mr-1" action="deleteDoctor" onsubmit=" return deleteRow(this)">
                               <input type="hidden" name="id" value="<?php echo $doctor['id']; ?>">
-                              <button name="deletedoctor" class=""><i class="mt-4 text-indigo-700 fa fa-trash"></i></button>
+                              <button type="submit" class="text-red-700"><i class=" mt-4 text-indigo-700 fa fa-trash"></i></button>
                             </form>
                           </div>
                         </td>
@@ -223,6 +216,28 @@ $nbrAccepted = $data->getNbrOfAccepted();
     </div>
   </div>
 </div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+ function deleteRow(form) {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this Docotor!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          form.submit();
+        }
+      });
+      return false;
+  }
+</script>
+
 
 <script>
   let accepted = document.querySelectorAll('.accepted');

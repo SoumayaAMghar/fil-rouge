@@ -100,6 +100,8 @@ if (isset($_POST['id_patient'])) {
                     <tr>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Date</th>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                        Doctor</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Allergy</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -119,6 +121,9 @@ if (isset($_POST['id_patient'])) {
                           <?php echo $allergie['date']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <?php echo $allergie['doctor_name']; ?>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $allergie['allergy']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -127,21 +132,21 @@ if (isset($_POST['id_patient'])) {
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $allergie['treatment']; ?>
                         </td>
-
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <?php if($_SESSION['id'] == $allergie['id_doctor']) :?>
                           <div class="flex space-between">
                             <form method="post" class="mr-1" action="updateAllery" data-netlify="true">
                               <input type="hidden" name="id" value="<?php echo $allergie['id']; ?>">
                               <button class="text-emerald-400"><i class="fa fa-edit"></i></button>
                             </form>
-                            <form method="post" class="mr-1" action="deleteallergy">
+                            <form method="post" class="mr-1" action="deleteallergy" onsubmit=" return deleteRow(this)">
                               <input type="hidden" name="id" value="<?php echo $allergie['id']; ?>">
-                              <button class="text-red-700"><i class="fa fa-trash"></i></button>
+                              <button type="submit" class="text-red-700"><i class="fa fa-trash"></i></button>
                             </form>
                           </div>
-              </div>
-              </td>
-
+                          <?php endif; ?>
+                    </div>
+                    </td>
               </tr>
             <?php endforeach; ?>
             </tbody>
@@ -155,3 +160,26 @@ if (isset($_POST['id_patient'])) {
   </div>
 </div>
 </div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+ function deleteRow(form) {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this allergy!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          form.submit();
+        }
+      });
+      return false;
+  }
+</script>
+
+

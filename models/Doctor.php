@@ -1,7 +1,18 @@
 <?php
 
 class Doctor{
-    
+    static public function getdoctor($data){
+        $id = $data['id'];
+        try{
+            $query = 'SELECT * FROM doctors WHERE id=:id';
+            $stmt = DB::connect()->prepare($query);
+            $stmt->execute(array(":id" => $id));
+            $doctor = $stmt->fetch(PDO::FETCH_OBJ);
+            return $doctor;
+        }catch(PDOException $ex){
+            echo 'error'.$ex->getMessage();
+        }
+    }
     static public function login($data){
         try{
             // print_r($data);

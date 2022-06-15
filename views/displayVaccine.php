@@ -53,19 +53,13 @@ if (isset($_POST['id_patient'])) {
               <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </button>
-
         </div>
-
         <div class="flex items-center">
-
-
           <div x-data="{ dropdownOpen: false }" class="relative">
             <a href="<?php echo BASE_URL; ?>logout" title="Déconnexion" class="mr-2 mb-2 text-black">
               <i class="fa fa-power-off"></i> Logout
             </a>
-
             <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
-
             <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10" style="display: none;">
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Products</a>
@@ -77,29 +71,21 @@ if (isset($_POST['id_patient'])) {
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
         <div class="container mx-auto px-6 py-8">
           <h3 class="text-gray-700 text-3xl font-medium">Vaccines</h3>
-
-
-
           <div class="mt-8">
-
           </div>
-
           <div class="flex flex-col mt-8">
-
             <form method="post" action="addVaccine">
               <button name="patient"><i class="fas fa-plus text-white mb-4 bg-indigo-600 rounded p-2 mt-2"> </i></button>
             </form>
             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
               <div class="align-middle inline-block min-w-full  overflow-hidden sm:rounded-lg border-b border-gray-200">
-
-
-
-
                 <table class="min-w-full">
                   <thead class="bg-blue-400">
                     <tr>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Date</th>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                        Doctor name</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Type</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -108,13 +94,14 @@ if (isset($_POST['id_patient'])) {
                         Actions</th>
                     </tr>
                   </thead>
-
                   <tbody class="bg-white">
                     <?php foreach ($vaccines as $vaccine) : ?>
-
                       <tr>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $vaccine['date']; ?>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <?php echo $vaccine['doctor_name']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $vaccine['type']; ?>
@@ -123,24 +110,23 @@ if (isset($_POST['id_patient'])) {
                           <?php echo $vaccine['vaccine']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <?php if($_SESSION['id'] == $vaccine['id_doctor']) :?>
                           <div class="flex space-between">
-                            <form method="post" class="mr-1" action="updateVaccine " data-netlify="true">
+                            <form method="post" class="mr-1" action="updateVaccine ">
                               <input type="hidden" name="id" value="<?php echo $vaccine['id']; ?>">
                               <button class="text-emerald-400"><i class="fa fa-edit"></i></button>
                             </form>
-                            <form method="post" class="mr-1" action="deletevaccine">
+                            <form method="post" class="mr-1" action="deletevaccine" onsubmit=" return deleteRow(this)">
                               <input type="hidden" name="id" value="<?php echo $vaccine['id']; ?>">
-                              <button class="text-red-700"><i class="fa fa-trash"></i></button>
+                              <button type="submit" class="text-red-700"><i class="fa fa-trash"></i></button>
                             </form>
                           </div>
-              </div>
-              </td>
-
-              </tr>
-            <?php endforeach; ?>
-            </tbody>
+                          <?php endif; ?>
+                        </td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
             </table>
-
             </div>
           </div>
         </div>
@@ -149,3 +135,23 @@ if (isset($_POST['id_patient'])) {
   </div>
 </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+ function deleteRow(form) {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this Attachement!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          form.submit();
+        }
+      });
+      return false;
+  }
+</script>
