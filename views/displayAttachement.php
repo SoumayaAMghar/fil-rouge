@@ -3,12 +3,12 @@
 $dat = new AttachementsController();
 $attachements = $dat->getAllattachements();
 
-if (isset($_POST['id_patient'])) {
+// if (isset($_POST['id_patient'])) {
 
   $data = new PatientsController();
-  $patient = $data->getOnePatient();
-  $_SESSION['id_patient'] = $_POST['id_patient'];
-}
+  $patient = $data->getOnePatient($_SESSION['id_patient']);
+  // $_SESSION['id_patient'] = $_POST['id_patient'];
+// }
 ?>
 
 

@@ -3,12 +3,16 @@
 $dat = new BiometriesController();
 $biometries = $dat->getAllbiometries();
 
-if (isset($_POST['id_patient'])) {
+
 
   $data = new PatientsController();
-  $patient = $data->getOnePatient();
-  $_SESSION['id_patient'] = $_POST['id_patient'];
-}
+  $patient = $data->getOnePatient($_SESSION['id_patient']);
+  // echo'<pre>';
+  // print_r($patient->blood_group);
+  // die;
+
+
+
 ?>
 
 
@@ -76,24 +80,14 @@ if (isset($_POST['id_patient'])) {
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
         <div class="container mx-auto px-6 py-8">
           <h3 class="text-gray-700 text-3xl font-medium">Biometry</h3>
-
-
-
           <div class="mt-8">
-
           </div>
-
           <div class="flex flex-col mt-8">
-
             <form method="post" action="addBiometry">
               <button name="patient"><i class="fas fa-plus text-white mb-4 bg-indigo-600 rounded p-2 mt-2"> </i></button>
             </form>
             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
               <div class="align-middle inline-block min-w-full  overflow-hidden sm:rounded-lg border-b border-gray-200">
-
-
-
-
                 <table class="min-w-full">
                   <thead class="bg-blue-400">
                     <tr>
@@ -125,7 +119,7 @@ if (isset($_POST['id_patient'])) {
                           <?php echo $biometry['doctor_name']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <?php echo $biometry['age']; ?>
+                        <?php echo $biometry['age']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <?php echo $biometry['weight']; ?>
@@ -134,7 +128,7 @@ if (isset($_POST['id_patient'])) {
                           <?php echo $biometry['height']; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <?php echo $biometry['blood_group']; ?>
+                        <?php echo $patient->blood_group; ?>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                         <?php if($_SESSION['id'] == $biometry['id_doctor']) :?>

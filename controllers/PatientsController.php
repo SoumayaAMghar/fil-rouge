@@ -42,12 +42,20 @@ class PatientsController
         // print_r($_POST);
         // die;
         if (isset($_POST['submit'])) {
+            $year=explode('-',$_POST['birthday']);
+            $y=date("Y")-$year[0];
+            $m=date("m")-$year[1];
+            $age=($y.' year(s) '.$m.' month(s)');
+            
             $data = array(
                 'firstname' => $_POST['firstname'],
                 'lastname' => $_POST['lastname'],
                 'gender' => $_POST['gender'],
                 'cin' => $_POST['cin'],
+                'age'=>$age,
                 'phone' => $_POST['phone'],
+                'birthday' => $_POST['birthday'],
+                'blood_group' => $_POST['blood_group'],
                 'id_doctor' =>$_SESSION['id']
             );
             $result = Patient::add($data);
@@ -59,13 +67,13 @@ class PatientsController
             }
         }
     }
-    public function getOnePatient()
+    public function getOnePatient($id)
     {
-        if (isset($_POST['id'])) {
-            $data = array('id' => $_POST['id']);
+    
+            $data = array('id' => $id );
             $patient = Patient::getPatient($data);
             return $patient;
-        }
+        
     }
 
     public function updatePatient()
@@ -74,16 +82,17 @@ class PatientsController
         // print_r($_POST);
         // die;
         if (isset($_POST['submit'])) {
-
             $data = array(
                 'id' => $_POST['id'],
                 'firstname' => $_POST['firstname'],
                 'lastname' => $_POST['lastname'],
                 'gender' => $_POST['gender'],
                 'cin' => $_POST['cin'],
+                'birthday' => $_POST['birthday'],
                 'phone' => $_POST['phone'],
-                // 'blood_group' => $_POST['blood_group'],
+                'blood_group' => $_POST['blood_group'],
             );
+
             $result = Patient::update($data);
             if ($result === 'ok') {
                 // Session::set('success', 'pateint Modifié');

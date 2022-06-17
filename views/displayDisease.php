@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_POST['find'])) {
   $data = new DiseasesController();
   $diseases = $data->findDiseases();
@@ -8,8 +9,7 @@ if (isset($_POST['find'])) {
 }
 
 $data = new PatientsController();
-$patient = $data->getOnePatient();
-
+$patient = $data->getOnePatient($_SESSION['id_patient']);
 ?>
 <style>
   .bg-gradient-cover {

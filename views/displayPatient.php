@@ -3,8 +3,12 @@
 if (isset($_POST['id'])) {
 
     $data = new PatientsController();
-    $patient = $data->getOnePatient();
+    $patient = $data->getOnePatient($_POST['id']);
+   
     $_SESSION['id_patient'] = $_POST['id'];
+    $_SESSION['birthday'] = $_POST['birthday'];
+    // print_r($_SESSION['birthday']);
+    // die;
 }
 ?>
 <style>
@@ -147,7 +151,6 @@ if (isset($_POST['id'])) {
                                                             </a>
                                                             <div class="pt-1">
                                                                 <div class="text-gray-100">
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -157,9 +160,7 @@ if (isset($_POST['id'])) {
                                                     <div class="relative hover-img max-h-56 overflow-hidden rounded-md m-2">
                                                         <a href="<?= BASE_URL ?>displayBiometry">
                                                             <img class="max-w-full w-full mx-auto h-auto" src="https://www.inria.fr/sites/default/files/2021-06/A_MedecinePersonnalisee_Vidium_AdobeStock_103537025.jpg" alt="Image description">
-
                                                             <div class="absolute px-4 pt-2 pb-2 bottom-0 w-full bg-gradient-cover">
-
                                                                 <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">Biometry</h2>
                                                         </a>
                                                         <div class="">
@@ -174,9 +175,7 @@ if (isset($_POST['id'])) {
                                                 <div class="relative hover-img max-h-48 overflow-hidden rounded-md m-2">
                                                     <a href="<?= BASE_URL ?>displayVaccine">
                                                         <img class="max-w-full w-full mx-auto h-auto" src="https://u-paris.fr/wp-content/uploads/2021/01/S%C3%A9minaire-vaccination-21.jpg" alt="Image description">
-
                                                         <div class="absolute px-4 pt-2 pb-2 bottom-0 w-full bg-gradient-cover">
-
                                                             <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">Vaccination</h2>
                                                     </a>
                                                     <div class="pt-1">

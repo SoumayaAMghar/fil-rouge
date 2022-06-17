@@ -2,6 +2,7 @@
 
 class DiseasesController {
     
+
     public function getAlldiseases(){
         // echo "<pre>";
         // print_r($_POST);
@@ -14,11 +15,15 @@ class DiseasesController {
 
     public function findDiseases()
     {
-        if (isset($_POST['search'])) {
+        if (!empty($_POST['search'])) {
             $data = array('search' => $_POST['search']);
+            $Diseases = Disease::searchDiseases($data);
+            return $Diseases;
         }
-        $Diseases = Disease::searchDiseases($data);
-        return $Diseases;
+        else{
+            return $this->getAlldiseases();
+        }
+     
     }
     public function addDisease(){
         if(isset($_POST['submit'])){

@@ -3,20 +3,13 @@
 if (isset($_POST['submit'])) {
     $loginDoctor = new DoctorsController();
     $loginDoctor->auth();
-    
-    
 }
-// $data = new DoctorsController();
-// $doctors = $data->getAlldoctors();
-
 ?>
-
 
 <body>
     <section class="min-h-screen flex items-stretch text-white lg:text-black ">
         <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center " style="background-image: url(https://images.ctfassets.net/76f8cs5bg9si/69wePzTKPymXWXlQZHxxva/3b957ad3eb91b988a1eb850a67cacf1a/Untitled-design-18-copy.png?w=2560&q=100);">
-            <div class="absolute bg-black opacity-50 inset-0 z-0"></div>
-           
+            <div class="absolute bg-black opacity-50 inset-0 z-0"></div>          
         </div>
         
         <div class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0" style="background-color: #edf4ff;">

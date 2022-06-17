@@ -93,11 +93,7 @@ if (isset($_POST['submit'])) {
                   <input class="border py-2 px-3 text-grey-800" type="date" name="date" id="date" value="<?php echo $biometry->date; ?>" required>
                   <input type="hidden" name="id" value="<?php echo $biometry->id; ?>">
                 </div>
-                <div class="flex flex-col mb-4">
-                  <label class="mb-2 font-bold text-lg text-gray-900" for="age">Age</label>
-                  <input class="border py-2 px-3 text-grey-800" type="text" name="age" id="age" value="<?php echo $biometry->age; ?>" required>
-                  <input type="hidden" name="id" value="<?php echo $biometry->id; ?>">
-                </div>
+
                 <div class="flex flex-col mb-4">
                   <label class="mb-2 font-bold text-lg text-gray-900" for="weight">Weight</label>
                   <input class="border py-2 px-3 text-grey-800" type="text" name="weight" id="weight" value="<?php echo $biometry->weight; ?>" required>
@@ -107,21 +103,6 @@ if (isset($_POST['submit'])) {
                   <label class="mb-2 font-bold text-lg text-gray-900" for="height">Height</label>
                   <input class="border py-2 px-3 text-grey-800" type="text" name="height" id="height" value="<?php echo $biometry->height; ?>" required>
                   <input type="hidden" name="id" value="<?php echo $biometry->id; ?>">
-                </div>
-                <div class="flex flex-col mb-4">
-                  <label class="mb-2 font-bold text-lg text-gray-900" for="blood_group">Blood Group</label>
-                  <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="blood_group" id="blood_group" value="<?php echo $biometry->blood_group; ?>" required> -->
-                  <input type="hidden" name="id" value="<?php echo $biometry->id; ?>">
-                  <select name="blood_group" required>
-                    <option value="<?php echo $biometry->blood_group = "O+"; ?>">O+</option>
-                    <option value="<?php echo $biometry->blood_group = "O-"; ?>">O-</option>
-                    <option value="<?php echo $biometry->blood_group = "A+"; ?>">A+</option>
-                    <option value="<?php echo $biometry->blood_group = "A-"; ?>">A-</option>
-                    <option value="<?php echo $biometry->blood_group = "B+"; ?>">B+</option>
-                    <option value="<?php echo $biometry->blood_group = "B-"; ?>">B-</option>
-                    <option value="<?php echo $biometry->blood_group = "AB+"; ?>">AB+</option>
-                    <option value="<?php echo $biometry->blood_group = "AB-"; ?>">AB-</option>
-                  </select>
                 </div>
 
                 <div class="pt-4 flex items-center justify-center">

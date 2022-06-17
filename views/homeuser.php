@@ -191,16 +191,17 @@ $nbrFemales = $data->getNbrOfFemales();
                         <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div class="flex  justify-center space-x-1">
                             <div>
-                              <form method="post" class="mr-1" action="displayPatient" data-netlify="true">
+                              <form method="post" class="mr-1" action="displayPatient" >
                                 <input type="hidden" name="id" value="<?php echo $patient['id']; ?>">
+                                <input type="hidden" name="birthday" value="<?php echo $patient['birthday']; ?>">
                                 <button class="text-blue-700"><i class="fas fa-eye"></i></button>
                               </form>
                             </div>
                             <?php if($_SESSION['id'] == $patient['id_doctor']) :?>
                               <div >
-                              <form method="post" class="mr-1" action="update" data-netlify="true">
-                                <input type="hidden" name="id" value="<?php echo $patient['id']; ?>">
-                                <button class="text-emerald-400"><i class="fa fa-edit"></i></button>
+                              <form method="post" class="mr-1" action="update">
+                                <input type="hidden" name="id_brahim" value="<?php echo $patient['id']; ?>">
+                                <button  class="text-emerald-400"><i class="fa fa-edit"></i></button>
                               </form>
                             </div>
 

@@ -1,8 +1,8 @@
 <?php
 
 if (isset($_POST['submit'])) {
-    $newPatient = new PatientsController();
-    $newPatient->addPatient();
+  $newPatient = new PatientsController();
+  $newPatient->addPatient();
 }
 ?>
 
@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 
     <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
       <div class="flex items-center justify-center mt-8">
-      <div class="flex items-center">
+        <div class="flex items-center">
           <a href="<?= BASE_URL ?>homeuser">
             <span class="text-white text-2xl mx-2 font-semibold">DM<span class="text-blue-700">I</span></span>
           </a>
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
       </div>
 
       <nav class="mt-10">
-        <a  class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?php echo BASE_URL; ?>homeuser">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
@@ -70,49 +70,67 @@ if (isset($_POST['submit'])) {
       </header>
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
         <div class="container mx-auto px-6 py-8">
-          
-          
+
+
           <div class="flex justify-center w-full ">
             <div class="w-11/12 md:w-3/4 sm-3/4 lg:w-1/2 bg-white rounded shadow-2xl p-8 m-4">
-                <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">ADD Patient</h1>
-                <form method="post">
-                    <div class="flex flex-col mb-4">
-                        <label class="mb-2 font-bold text-lg text-gray-900" for="firstname">Firstname</label>
-                        <input class="border py-2 px-3 text-grey-800" type="text" name="firstname" id="firstname" required>
+              <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">ADD Patient</h1>
+              <form method="post">
+                <div class="flex flex-col mb-4">
+                  <label class="mb-2 font-bold text-lg text-gray-900" for="firstname">Firstname</label>
+                  <input class="border py-2 px-3 text-grey-800" type="text" name="firstname" id="firstname" required>
 
-                    </div>
-                    <div class="flex flex-col mb-4">
-                        <label class="mb-2 font-bold text-lg text-gray-900" for="lastname">Lastname</label>
-                        <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname" required>
-                    </div>
-                    <div class="flex flex-col mb-4">
-                        <label class="mb-2 font-bold text-lg text-gray-900" for="gender">Gender</label>
-                        <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="gender" id="gender" > -->
-                        <select class="border py-2 px-3 text-grey-800" name="gender" required>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                    <div class="flex flex-col mb-4">
-                        <label class="mb-2 font-bold text-lg text-gray-900" for="cin">CIN</label>
-                        <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin" required>
-                    </div>
-                    <div class="flex flex-col mb-4">
-                        <label class="mb-2 font-bold text-lg text-gray-900" for="phone">Phone</label>
-                        <input class="border py-2 text-grey-800" type="text" name="phone" id="phone" required>
-                    </div>
+                </div>
+                <div class="flex flex-col mb-4">
+                  <label class="mb-2 font-bold text-lg text-gray-900" for="lastname">Lastname</label>
+                  <input class="border py-2 px-3 text-grey-800" type="text" name="lastname" id="lastname" required>
+                </div>
+                <div class="flex flex-col mb-4">
+                  <label class="mb-2 font-bold text-lg text-gray-900" for="gender">Gender</label>
+                  <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="gender" id="gender" > -->
+                  <select class="border py-2 px-3 text-grey-800" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+                <div class="flex flex-col mb-4">
+                  <label class="mb-2 font-bold text-lg text-gray-900" for="cin">CIN</label>
+                  <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin" required>
+                </div>
+                <div class="flex flex-col mb-4">
+                  <label class="mb-2 font-bold text-lg text-gray-900" for="birthday">Birthday</label>
+                  <input class="border py-2 px-3 text-grey-800" type="date" name="birthday" id="birthday" required>
+                </div>
+                <div class="flex flex-col mb-4">
+                  <label class="mb-2 font-bold text-lg text-gray-900" for="phone">Phone</label>
+                  <input class="border py-2 text-grey-800" type="text" name="phone" id="phone" required>
+                </div>
+                <div class="flex flex-col mb-4">
+                  <label class="mb-2 font-bold text-lg text-gray-900" for="blood_group">Blood group</label>
+                  <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="height" id="height" > -->
+                  <select name="blood_group" required>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                  </select>
+                </div>
 
-                    <div class="pt-4 flex items-center justify-center">
-                        <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>homeuser">
-                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg> Cancel
-                        </a>
-                        <button type="submit" name="submit" class="bg-indigo-500 w-40 text-white px-4 py-3 rounded-md focus:outline-none">SAVE</button>
-                    </div>
-                </form>
+                <div class="pt-4 flex items-center justify-center">
+                  <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>homeuser">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg> Cancel
+                  </a>
+                  <button type="submit" name="submit" class="bg-indigo-500 w-40 text-white px-4 py-3 rounded-md focus:outline-none">SAVE</button>
+                </div>
+              </form>
             </div>
-        </div>
+          </div>
 
 
         </div>

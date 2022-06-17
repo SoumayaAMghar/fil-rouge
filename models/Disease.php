@@ -1,7 +1,6 @@
 <?php
 
 class Disease{
-
     static public function getAlldis($id_patient)
     {     
             $stmt = DB::connect()->prepare('SELECT * FROM diseases WHERE id_patient=:id_patient');
@@ -13,9 +12,9 @@ class Disease{
     static public function searchDiseases($data){
         $search = $data['search'];
         try{
-            $query = 'SELECT * FROM diseases WHERE disease  LIKE ? OR status LIKE ?';
+            $query = 'SELECT * FROM diseases WHERE disease  LIKE ? AND id_patient like ? ';
             $stmt = DB::connect()->prepare($query);
-            $stmt->execute(array('%'.$search.'%','%'.$search.'%'));
+            $stmt->execute(array('%'.$search.'%',$_SESSION['id_patient']));
             $patients =$stmt->fetchAll();
             return $patients;
         }catch(PDOException $ex){

@@ -83,10 +83,7 @@ if (isset($_POST['patient_id'])) {
                   <label class="mb-2 font-bold text-lg text-gray-900" for="date">Date</label>
                   <input class="border py-2 px-3 text-grey-800" type="date" name="date" id="date" required>
                 </div>
-                <div class="flex flex-col mb-4">
-                  <label class="mb-2 font-bold text-lg text-gray-900" for="age">Age</label>
-                  <input class="border py-2 px-3 text-grey-800" type="text" name="age" id="age" required>
-                </div>
+
                 <div class="flex flex-col mb-4">
                   <label class="mb-2 font-bold text-lg text-gray-900" for="weight">Weight</label>
                   <input class="border py-2 px-3 text-grey-800" weight="text" name="weight" id="weight" required>
@@ -95,21 +92,7 @@ if (isset($_POST['patient_id'])) {
                   <label class="mb-2 font-bold text-lg text-gray-900" for="height">Height</label>
                   <input class="border py-2 px-3 text-grey-800" type="text" name="height" id="height" required>
                 </div>
-                <div class="flex flex-col mb-4">
-                  <label class="mb-2 font-bold text-lg text-gray-900" for="blood_group">Blood group</label>
-                  <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="height" id="height" > -->
-                  <select name="blood_group" required>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                  </select>
-                </div>
-
+           
                 <div class="pt-4 flex items-center justify-center">
                   <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>displayBiometry">
                     <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

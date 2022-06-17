@@ -1,7 +1,8 @@
 <?php
-if (isset($_POST['id']) && !isset($_POST['submit'])) {
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $existPatient = new PatientsController();
-    $patient = $existPatient->getOnePatient();
+    $patient = $existPatient->getOnePatient($_POST['id_brahim']);
 }
 
 if (isset($_POST['submit'])) {
@@ -92,9 +93,28 @@ if (isset($_POST['submit'])) {
                       <input class="border py-2 px-3 text-grey-800" type="text" name="cin" id="cin" value="<?php echo $patient->cin; ?>" required>
                   </div>
                   <div class="flex flex-col mb-4">
+                      <label class="mb-2 font-bold text-lg text-gray-900" for="birthday">Birthday</label>
+                      <input class="border py-2 px-3 text-grey-800" type="date" name="birthday" id="birthday" value="<?php echo $patient->birthday; ?>" required>
+                  </div>
+                  <div class="flex flex-col mb-4">
                       <label class="mb-2 font-bold text-lg text-gray-900" for="phone">Phone</label>
                       <input class="border py-2 text-grey-800" type="text" name="phone" id="phone" value="<?php echo $patient->phone; ?>" required>
                   </div>
+                  <div class="flex flex-col mb-4">
+                  <label class="mb-2 font-bold text-lg text-gray-900" for="blood_group">Blood Group</label>
+                  <!-- <input class="border py-2 px-3 text-grey-800" type="text" name="blood_group" id="blood_group" value="<?php echo $biometry->blood_group; ?>" required> -->
+                  <input type="hidden" name="id" value="<?php echo $patient->id; ?>">
+                  <select name="blood_group" required>
+                    <option value="<?php echo $patient->blood_group = "O+"; ?>">O+</option>
+                    <option value="<?php echo $patient->blood_group = "O-"; ?>">O-</option>
+                    <option value="<?php echo $patient->blood_group = "A+"; ?>">A+</option>
+                    <option value="<?php echo $patient->blood_group = "A-"; ?>">A-</option>
+                    <option value="<?php echo $patient->blood_group = "B+"; ?>">B+</option>
+                    <option value="<?php echo $patient->blood_group = "B-"; ?>">B-</option>
+                    <option value="<?php echo $patient->blood_group = "AB+"; ?>">AB+</option>
+                    <option value="<?php echo $patient->blood_group = "AB-"; ?>">AB-</option>
+                  </select>
+                </div>
                   <div class="pt-4 flex items-center justify-center">
                       <a class="flex justify-center items-center w-40 text-gray-900 px-4 py-3 rounded-md focus:outline-none" href="<?php echo BASE_URL; ?>homeuser">
                           <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
